@@ -30,7 +30,7 @@ Below are Microsoft's official MCP server implementations:
 ### 🧪 Playwright MCP
 
 - **Repository**: [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
-- **Description**: An MCP server for orchestrating Playwright test runs, facilitating automated browser testing within AI-driven development pipelines.
+- **Description**: An MCP server for browsing the internet. Enables LLMs to interact with web pages through structured accessibility snapshots. Useful for web navigation and form-filling, data extraction from structured content, automated testing driven by LLMs, and general-purpose browser interaction for agents.
 
 ---
 
