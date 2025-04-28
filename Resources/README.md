@@ -7,26 +7,28 @@ A curated collection of videos, blogs, documentation, and code repositories to h
 
 ## 🎥 Videos
 
-| Title | Description |
-| :--- | :--- |
-| [VS Code Agent Mode Just Changed Everything](https://youtu.be/dutyOc_cAEU?t=19) | Ever wished your code editor could write your app, talk to your database, and even follow documentation like a real dev? In this video, we show you how to use agent mode, MCP Servers and PRD documents to build an entire app complete with database.|
-| [The Future of AI in VS Code: MCP Servers Explained!](https://www.youtube.com/watch?v=Wp0p7iKH6ho) | In this video, we break down MCP (Model Context Protocol) Servers and how they supercharge GitHub Copilot inside Visual Studio Code. Learn how to set up and use MCP servers to bring live, real-time context—like web searches and databases—directly into your AI coding workflow. |
-| [Build Remote MCP servers using Azure Functions in C# and .NET](https://www.youtube.com/results?search_query=Build+Remote+MCP+servers+using+Azure+Functions+in+C%23+and+.NET) | Deploy MCP Servers with Azure Functions and .NET |
-| [Build Remote MCP servers using Azure Functions in C# and TypeScript](https://www.youtube.com/results?search_query=Build+Remote+MCP+servers+using+Azure+Functions+in+C%23+and+TypeScript) | Deploy MCP Servers with Azure Functions and TypeScript |
-| [Use APIs as tools for your Agents with MCP](https://www.youtube.com/watch?v=Xf5xxhT9ySs) | Learn how to use APIs as tools within your MCP agents |
-| [This Protocol will Transform My Linux Lab](https://www.youtube.com/results?search_query=This+Protocol+will+Transform+My+Linux+Lab) | Cloud Engineer/Ops focused implementation of MCP |
-| [Model context Protocol + Aspire = AI Magic in .NET](https://www.youtube.com/watch?v=2holzbob1_I&t=138s) | In this video, we walk you through how to integrate the Model Context Protocol (MCP) into a Blazor Chat Application powered by .NET Aspire using the official C# SDK. 🚀 The official C# SDK makes it easy to implement and interact with MCP clients and servers in your .NET apps. In this demo, we’ll see how to create a Blazor-based chat app, configure MCP, and connect it to a local AI model using Qwq — all managed by .NET Aspire! |
+| Title | Topic | Description |
+| :--- | :--- | :--- |
+| [VS Code Agent Mode Just Changed Everything](https://youtu.be/dutyOc_cAEU?t=19) | Getting Started | Ever wished your code editor could write your app, talk to your database, and even follow documentation like a real dev? In this video, we show you how to use agent mode, MCP Servers and PRD documents to build an entire app complete with database. |
+| [The Future of AI in VS Code: MCP Servers Explained!](https://www.youtube.com/watch?v=Wp0p7iKH6ho) | Getting Started | In this video, we break down MCP (Model Context Protocol) Servers and how they supercharge GitHub Copilot inside Visual Studio Code. Learn how to set up and use MCP servers to bring live, real-time context—like web searches and databases—directly into your AI coding workflow. |
+| [Build Remote MCP servers using Azure Functions in C# and .NET](https://www.youtube.com/results?search_query=Build+Remote+MCP+servers+using+Azure+Functions+in+C%23+and+.NET) | Getting Started | Deploy MCP Servers with Azure Functions and .NET |
+| [Build Remote MCP servers using Azure Functions in C# and TypeScript](https://www.youtube.com/results?search_query=Build+Remote+MCP+servers+using+Azure+Functions+in+C%23+and+TypeScript) | Getting Started | Deploy MCP Servers with Azure Functions and TypeScript |
+| [Use APIs as tools for your Agents with MCP](https://www.youtube.com/watch?v=Xf5xxhT9ySs) | Getting Started | Learn how to use APIs as tools within your MCP agents |
+| [This Protocol will Transform My Linux Lab](https://www.youtube.com/results?search_query=This+Protocol+will+Transform+My+Linux+Lab) | Getting Started | Cloud Engineer/Ops focused implementation of MCP |
+| [Model context Protocol + Aspire = AI Magic in .NET](https://www.youtube.com/watch?v=2holzbob1_I&t=138s) | Getting Started | In this video, we walk you through how to integrate the Model Context Protocol (MCP) into a Blazor Chat Application powered by .NET Aspire using the official C# SDK. 🚀 The official C# SDK makes it easy to implement and interact with MCP clients and servers in your .NET apps. In this demo, we’ll see how to create a Blazor-based chat app, configure MCP, and connect it to a local AI model using Qwq — all managed by .NET Aspire! |
+
 ---
 
 ## 📝 Blogs
 
-| Title | Description |
-| :--- | :--- |
-| [Build AI agent tools using remote MCP with Azure Functions](https://techcommunity.microsoft.com/blog/appsonazureblog/build-ai-agent-tools-using-remote-mcp-with-azure-functions/4401059) | Remote MCP server deployment with Azure Functions |
-| [Create an MCP Server with Azure AI Agent Service](https://devblogs.microsoft.com/foundry/integrating-azure-ai-agents-mcp-typescript/) | Enables Developers to create an agent with Azure AI Agent Service and uses the model context protocol (MCP) for consumption of the agents in compatible clients (VS Code, Cursor, Claude Desktop) |
-| [Vibe coding with GitHub Copilot: Agent mode and MCP support](https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/) | MCP allows you to equip agent mode with the context and capabilities it needs to help you, like a USB port for intelligence. When you enter a chat prompt in agent mode within VS Code, the model can use different tools to handle tasks like understanding database schema or querying the web. |
-| [Enhancing AI Integrations with MCP and Azure API Management](https://techcommunity.microsoft.com/blog/IntegrationsonAzureBlog/enhancing-ai-integrations-with-mcp-and-azure-api-management/4406699) | Enhance AI integrations using MCP and Azure API Management |
-| [Understanding and Mitigating Security Risks in MCP Implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) | Overview of security risks and mitigation strategies for MCP implementations |
+| Title | Topic | Description |
+| :--- | :--- | :--- |
+| [Build AI agent tools using remote MCP with Azure Functions](https://techcommunity.microsoft.com/blog/appsonazureblog/build-ai-agent-tools-using-remote-mcp-with-azure-functions/4401059) | Getting Started | Remote MCP server deployment with Azure Functions |
+| [Create an MCP Server with Azure AI Agent Service](https://devblogs.microsoft.com/foundry/integrating-azure-ai-agents-mcp-typescript/) | Getting Started | Enables Developers to create an agent with Azure AI Agent Service and uses the model context protocol (MCP) for consumption of the agents in compatible clients (VS Code, Cursor, Claude Desktop) |
+| [Vibe coding with GitHub Copilot: Agent mode and MCP support](https://github.blog/news-insights/product-news/github-copilot-agent-mode-activated/) | Getting Started | MCP allows you to equip agent mode with the context and capabilities it needs to help you, like a USB port for intelligence. When you enter a chat prompt in agent mode within VS Code, the model can use different tools to handle tasks like understanding database schema or querying the web. |
+| [Enhancing AI Integrations with MCP and Azure API Management](https://techcommunity.microsoft.com/blog/IntegrationsonAzureBlog/enhancing-ai-integrations-with-mcp-and-azure-api-management/4406699) | Getting Started | Enhance AI integrations using MCP and Azure API Management |
+| [Understanding and Mitigating Security Risks in MCP Implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) | Security | Overview of security risks and mitigation strategies for MCP implementations |
+| [Protecting Against Indirect Injection Attacks in MCP](https://devblogs.microsoft.com/blog/protecting-against-indirect-injection-attacks-mcp) | Security | Strategies to prevent indirect injection attacks in MCP implementations |
 
 ## 💻 Code Repositories
 
