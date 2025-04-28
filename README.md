@@ -55,12 +55,6 @@ Interested in contributing a new MCP server or enhancing an existing one? Fork t
 
 ---
 
-## 🛠 Maintainers
-
-This list is curated by Microsoft engineers specializing in AI integrations and infrastructure automation. For suggestions or issues, please open an issue in the respective repository.
-
-
-
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
