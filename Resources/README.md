@@ -16,7 +16,7 @@ A curated collection of videos, blogs, documentation, and code repositories to h
 | [Use APIs as tools for your Agents with MCP](https://www.youtube.com/watch?v=Xf5xxhT9ySs) | Getting Started | Learn how to use APIs as tools within your MCP agents |
 | [This Protocol will Transform My Linux Lab](https://www.youtube.com/results?search_query=This+Protocol+will+Transform+My+Linux+Lab) | Getting Started | Cloud Engineer/Ops focused implementation of MCP |
 | [Model context Protocol + Aspire = AI Magic in .NET](https://www.youtube.com/watch?v=2holzbob1_I&t=138s) | Getting Started | In this video, we walk you through how to integrate the Model Context Protocol (MCP) into a Blazor Chat Application powered by .NET Aspire using the official C# SDK. 🚀 The official C# SDK makes it easy to implement and interact with MCP clients and servers in your .NET apps. In this demo, we’ll see how to create a Blazor-based chat app, configure MCP, and connect it to a local AI model using Qwq — all managed by .NET Aspire! |
-
+| [Microsoft Copilot Studio ❤️ Model Context Protocol (MCP)](https://www.youtube.com/watch?v=jG-XTzXxFCk) | Getting Started | In this video, Power Platform Advocate, Daniel Laskewitz walks you through the brand-new Microsoft Copilot Studio ❤️ Model Context Protocol (MCP) Lab! Learn how Model Context Protocol (MCP) empowers makers to seamlessly connect external knowledge sources and APIs to their Copilot Studio agents. MCP actions and knowledge automatically stay updated as functionality evolves — making your agents smarter and more adaptable. |
 ---
 
 ## 📝 Blogs
@@ -29,6 +29,7 @@ A curated collection of videos, blogs, documentation, and code repositories to h
 | [Enhancing AI Integrations with MCP and Azure API Management](https://techcommunity.microsoft.com/blog/IntegrationsonAzureBlog/enhancing-ai-integrations-with-mcp-and-azure-api-management/4406699) | Getting Started | Enhance AI integrations using MCP and Azure API Management |
 | [Understanding and Mitigating Security Risks in MCP Implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) | Security | Overview of security risks and mitigation strategies for MCP implementations |
 | [Protecting Against Indirect Injection Attacks in MCP](https://devblogs.microsoft.com/blog/protecting-against-indirect-injection-attacks-mcp) | Security | Strategies to prevent indirect injection attacks in MCP implementations |
+| [Microsoft Copilot Studio ❤️ MCP](https://aka.ms/mcsmcp/lab/blog) | Getting Started | Announcement of the Microsoft Copilot Studio ❤️ MCP lab |
 
 ## 💻 Code Repositories
 
@@ -38,7 +39,7 @@ A curated collection of videos, blogs, documentation, and code repositories to h
 | [Azure-Samples/remote-mcp-functions-python](https://github.com/Azure-Samples/remote-mcp-functions-python) | Sample Python Azure Functions demonstrating remote MCP integration | Python |
 | [Azure-Samples/remote-mcp-functions-dotnet](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) | Sample .NET Azure Functions demonstrating remote MCP integration | C# |
 | [Azure-Samples/remote-mcp-functions-typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) | Sample TypeScript Azure Functions demonstrating remote MCP integration | TypeScript |
-
+| [Microsoft Copilot Studio ❤️ MCP](https://aka.ms/mcsmcp/lab) | Getting Started | Microsoft Copilot Studio ❤️ MCP lab |
 ---
 
 
