@@ -39,7 +39,7 @@ A curated collection of videos, blogs, documentation, and code repositories to h
 | [Azure-Samples/remote-mcp-functions-python](https://github.com/Azure-Samples/remote-mcp-functions-python) | Sample Python Azure Functions demonstrating remote MCP integration | Python |
 | [Azure-Samples/remote-mcp-functions-dotnet](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) | Sample .NET Azure Functions demonstrating remote MCP integration | C# |
 | [Azure-Samples/remote-mcp-functions-typescript](https://github.com/Azure-Samples/remote-mcp-functions-typescript) | Sample TypeScript Azure Functions demonstrating remote MCP integration | TypeScript |
-| [Microsoft Copilot Studio ❤️ MCP](https://aka.ms/mcsmcp/lab) | Getting Started | Microsoft Copilot Studio ❤️ MCP lab |
+| [Microsoft Copilot Studio ❤️ MCP](https://aka.ms/mcsmcp/lab) | Microsoft Copilot Studio ❤️ MCP lab | TypeScript |
 ---
 
 
