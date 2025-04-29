@@ -1,7 +1,7 @@
 # 📚 MCP Resources
 
 Welcome to the **Model‑Context‑Protocol (MCP)** Resources Hub! 🎉
-A curated collection of videos, blogs, documentation, and code repositories to help you learn, explore, and master MCP.
+A curated collection of videos, blogs, documentation, and code repositories to help you learn, explore, and master MCP usage and implementation with Microsoft tooling.
 
 ❤️ If you find these resources helpful, feel free to ⭐ the repositories, share your feedback, and contribute!
 
