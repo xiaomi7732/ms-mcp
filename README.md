@@ -49,6 +49,7 @@ Interested in contributing a new MCP server or enhancing an existing one? Fork t
 
 ## 📎 Related Resources
 
+- [Microsoft MCP Resources](https://github.com/microsoft/mcp/tree/main/Resources)
 - [MCP Pattern Overview](https://modelcontextprotocol.io/introduction)
 - [MCP SDKs and Building Blocks](https://modelcontextprotocol.io/sdk)
 - [MCP Specification](https://spec.modelcontextprotocol.io/specification/2025-03-26/)
