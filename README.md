@@ -61,6 +61,13 @@ Below are Microsoft's official MCP server implementations:
 
 ---
 
+### 📚 Microsoft Docs MCP Server
+
+- **Repository**: [microsoftdocs/mcp](https://github.com/microsoftdocs/mcp)  
+- **Description**: An MCP server that provides structured access to Microsoft’s official documentation. Enables AI models to retrieve accurate, authoritative, and context-aware technical content for code generation, question answering, and workflow grounding.
+
+---
+
 ## 📎 Related Resources
 
 - [Microsoft MCP Resources](https://github.com/microsoft/mcp/tree/main/Resources)
