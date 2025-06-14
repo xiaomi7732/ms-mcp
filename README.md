@@ -33,7 +33,7 @@ Below are Microsoft's official MCP server implementations:
 - **Description**: Chat over your business data using NL - Discover tables, run queries, retrieve data, insert or update records, and execute custom prompts grounded in business knowledge and context.
 ---
 
-### 🧪 Playwright MCP
+### 🎭 Playwright MCP
 
 - **Repository**: [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp)
 - **Description**: An MCP server for browsing the internet. Enables LLMs to interact with web pages through structured accessibility snapshots. Useful for web navigation and form-filling, data extraction from structured content, automated testing driven by LLMs, and general-purpose browser interaction for agents.
