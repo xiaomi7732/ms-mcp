@@ -68,6 +68,13 @@ Below are Microsoft's official MCP server implementations:
 
 ---
 
+### 🛢️Microsoft SQL MCP Server
+
+- **Repository**: [MSSQL MCP Server](https://aka.ms/MssqlMcp)  
+- **Description**: Chat with your business data the new agentic way using natural language and AI. Connect to any SQL database—from ground (on-premises) to Azure cloud to Microsoft Fabric via a simple connection string. Discover and define table schemas, manage tables, and perform CRUD operations through conversational prompts.
+
+---
+
 ## 📎 Related Resources
 
 - [Microsoft MCP Resources](https://github.com/microsoft/mcp/tree/main/Resources)
