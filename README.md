@@ -165,6 +165,9 @@ The Azure MCP Server supercharges your agents with Azure context. Here are some 
 ### ⚙️ Azure Native ISV Services
 - List Monitored Resources in a Datadog Monitor
 
+### Azure Quick Review CLI Extension
+- Scan Azure resources for compliance related recommendations
+
 ### � Azure Resource Groups
 - List resource groups
 
