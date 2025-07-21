@@ -43,6 +43,7 @@
                 "rohit",
                 "vcolin",
                 "vinay",
+                "wbreza",
                 "xiangyan"
             ]
         },
@@ -70,6 +71,7 @@
                 "bestpractices",
                 "buildid",
                 "buildtransitive",
+                "cctor",
                 "centralus",
                 "classdef",
                 "classfilters",
@@ -224,6 +226,7 @@
         "ESRPRELPACMANTEST",
         "facetable",
         "hnsw",
+        "idempotency",
         "idtyp",
         "keyvault",
         "Kusto",
