@@ -126,6 +126,7 @@ extends:
     - stage: BuildVSIX
       displayName: 'Build VSIX Extension'
       dependsOn:
+        - Initialize
         - SignAndPack
       pool:
         name: $(LINUXPOOL)
@@ -158,6 +159,7 @@ extends:
       ${{ else }}:
         displayName: 'VSIX Sign and Pack'
       dependsOn:
+      - Initialize
       - BuildVSIX
       variables:
       - template: /eng/pipelines/templates/variables/image.yml
@@ -178,6 +180,7 @@ extends:
           dependsOn:
           - Initialize
           - SignAndPack
+          - SignAndPackVSIX
           pool:
             name: $(LINUXPOOL)
             image: $(LINUXVMIMAGE)
