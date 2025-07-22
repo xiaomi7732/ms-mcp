@@ -242,6 +242,7 @@
         "monitoredresources",
         "msal",
         "myaccount",
+        "myfilesystem",
         "mysvc",
         "mycluster",
         "Microbundle",
