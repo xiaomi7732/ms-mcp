@@ -174,6 +174,16 @@ module storage 'services/storage.bicep' = if (empty(areas) || contains(areas, 'S
   }
 }
 
+module loadtesting 'services/loadtesting.bicep' = if (empty(areas) || contains(areas, 'Loadtesting')) {
+  name: '${deploymentName}-loadtesting'
+  params: {
+    baseName: baseName
+    location: location
+    tenantId: tenantId
+    testApplicationOid: testApplicationOid
+  }
+}
+
 module workbooks 'services/workbooks.bicep' = if (empty(areas) || contains(areas, 'Workbooks')) {
   name: '${deploymentName}-workbooks'
   params: {
@@ -187,12 +197,3 @@ module workbooks 'services/workbooks.bicep' = if (empty(areas) || contains(areas
   ]
 }
 
-module loadtesting 'services/loadtesting.bicep' = {
-  name: '${deploymentName}-loadtesting'
-  params: {
-    baseName: baseName
-    location: location
-    tenantId: tenantId
-    testApplicationOid: testApplicationOid
-  }
-}
