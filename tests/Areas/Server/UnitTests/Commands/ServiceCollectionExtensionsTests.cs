@@ -89,7 +89,7 @@ public class ServiceCollectionExtensionsTests
     }
 
     [Fact]
-    public void AddAzureMcpServer_WithNamespaceProxy_RegistersServerToolLoader()
+    public void AddAzureMcpServer_WithNamespaceProxy_RegistersCompositeToolLoader()
     {
         // Arrange
         var services = SetupBaseServices();
@@ -106,8 +106,9 @@ public class ServiceCollectionExtensionsTests
         var provider = services.BuildServiceProvider();
 
         // Verify the correct tool loader is registered
+        // In namespace mode, we now use CompositeToolLoader that includes ServerToolLoader
         Assert.NotNull(provider.GetService<IToolLoader>());
-        Assert.IsType<ServerToolLoader>(provider.GetService<IToolLoader>());
+        Assert.IsType<CompositeToolLoader>(provider.GetService<IToolLoader>());
 
         // Verify discovery strategy is registered
         Assert.NotNull(provider.GetService<IMcpDiscoveryStrategy>());
@@ -161,8 +162,6 @@ public class ServiceCollectionExtensionsTests
         // Verify that the service collection contains an IMcpServer registration
         Assert.Contains(services, sd => sd.ServiceType == typeof(IMcpServer));
     }
-
-
 
     [Fact]
     public void AddAzureMcpServer_ConfiguresMcpServerOptions()
