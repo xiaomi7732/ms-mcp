@@ -27,9 +27,12 @@ The Azure MCP Server updates automatically by default whenever a new release com
 
 - Changed the default startup mode to list tools at the namespace level instead of at an individual level, reducing total tool count from around 128 tools to 25. Use `--mode all` to restore the previous behavior of exposing all tools individually. [[#689](https://github.com/Azure/azure-mcp/issues/689)]
 - Consolidated Azure best practices commands into the command `azmcp-bestpractices-get` with `--resource` and `--action` parameters: [[#677](https://github.com/Azure/azure-mcp/pull/677)]
-  - Removed `azmcp-bestpractices-general-get`. Use `--resource general --action all` instead.
-  - Removed `azmcp-bestpractices-azurefunctions-get-code-generation`. Use `--resource azurefunctions --action code-generation` instead.
-  - Removed `azmcp-bestpractices-azurefunctions-get-deployment`. Use `--resource azurefunctions --action deployment` instead.
+  - Removed `azmcp-bestpractices-general-get`, `azmcp-bestpractices-azurefunctions-get-code-generation` and `azmcp-bestpractices-azurefunctions-get-deployment`
+  - Use `--resource general --action code-generation` for general Azure code generation best practices
+  - Use `--resource general --action deployment` for general Azure deployment best practices
+  - Use `--resource azurefunctions --action code-generation` instead of the old azurefunctions code-generation command
+  - Use `--resource azurefunctions --action deployment` instead of the old azurefunctions deployment command
+  - Use `--resource static-web-app --action all` to get Static Web Apps development and deployment best practices
 
 ### Bugs Fixed
 
