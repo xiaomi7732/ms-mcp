@@ -118,7 +118,7 @@ public static class AzureMcpServiceCollectionExtensions
                 return new CompositeToolLoader(toolLoaders, loggerFactory.CreateLogger<CompositeToolLoader>());
             });
         }
-        else
+        else if (serviceStartOptions.Mode == ModeTypes.All)
         {
             services.AddSingleton<IMcpDiscoveryStrategy, RegistryDiscoveryStrategy>();
             services.AddSingleton<IToolLoader>(sp =>
