@@ -5,7 +5,8 @@
 param(
     [string] $TestResultsPath,
     [string[]] $Areas,
-    [switch] $Live,
+    [ValidateSet('Live', 'Unit', 'All')]
+    [string] $TestType = 'Unit',
     [switch] $CollectCoverage,
     [switch] $OpenReport
 )
@@ -15,35 +16,90 @@ $ErrorActionPreference = 'Stop'
 
 $RepoRoot = $RepoRoot.Path.Replace('\', '/')
 
+$debugLogs = $env:SYSTEM_DEBUG -eq 'true' -or $DebugPreference -eq 'Continue'
+
+$workPath = "$RepoRoot/.work/tests"
+Remove-Item -Recurse -Force $workPath -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Path $workPath -Force | Out-Null
+
 if (!$TestResultsPath) {
-    $TestResultsPath = "$RepoRoot/.work/testResults"
+    $TestResultsPath = "$workPath/testResults"
 }
 
 # Clean previous results
 Remove-Item -Recurse -Force $TestResultsPath -ErrorAction SilentlyContinue
 
-if($env:TF_BUILD) {
-    Move-Item -Path "$RepoRoot/tests/xunit.runner.ci.json" -Destination "$RepoRoot/tests/xunit.runner.json" -Force -ErrorAction Continue
-    Write-Host "Replaced xunit.runner.json with xunit.runner.ci.json"
+$testProjects = @()
+
+function AddTestProjects($path) {
+    if($TestType -in @('Live', 'All')) {
+        $script:testProjects += Get-ChildItem $path -Recurse -File -Filter "*.LiveTests.csproj"
+    }
+    if($TestType -in @('Unit', 'All')) {
+        $script:testProjects += Get-ChildItem $path -Recurse -File -Filter "*.UnitTests.csproj"
+    }
 }
 
-Write-Host "xunit.runner.json content:"
-Get-Content "$RepoRoot/tests/xunit.runner.json" | Out-Host
-
-# Run tests with optional coverage
-$filter = $Live ? "Category~Live" : "Category!~Live"
-
-if ($Areas) {
-    $filter = "$filter & ($($Areas | ForEach-Object { "Area=$_" } | Join-String -Separator ' | '))"
+if (!$Areas) {
+    AddTestProjects $RepoRoot
+} else {
+    foreach ($area in $Areas) {
+        $areaPath = $area -eq 'core' ? "$RepoRoot/core/tests" : "$RepoRoot/areas/$($area.ToLower())/tests"
+        if (Test-Path $areaPath) {
+            AddTestProjects $areaPath
+        } else {
+            Write-Error "Area path '$areaPath' does not exist."
+            return
+        }
+    }
 }
 
-$coverageArg = $CollectCoverage ? " --collect:'XPlat Code Coverage'" : ""
+if($testProjects.Count -eq 0) {
+    Write-Error "No test projects found in the specified areas for test type '$TestType'."
+    return
+}
 
-Invoke-LoggedCommand ("dotnet test '$RepoRoot/tests/AzureMcp.Tests.csproj'" +
-  $coverageArg +
-  " --filter '$filter'" +
-  " --results-directory '$TestResultsPath'" +
-  " --logger 'trx'") -AllowedExitCodes @(0, 1)
+Push-Location $workPath
+try {
+    Write-Host "Creating temporary solution file..."
+    dotnet new sln -n "Tests" | Out-Null
+    dotnet sln add $testProjects --in-root
+
+    if($debugLogs) {
+        Write-Host "`n`n"
+        # dump all environment variables
+        Write-Host "Current environment variables:" -ForegroundColor Yellow
+        Get-ChildItem Env: | Sort-Object Name | ForEach-Object { "$($_.Name)= $($_.Value)" } | Out-Host
+
+        # dump az powershell context
+        Write-Host "`nCurrent Azure PowerShell context (Get-AzContext):" -ForegroundColor Yellow
+        try {
+            Get-AzContext | ConvertTo-Json | Out-Host
+        } catch {
+            Write-Host "Error retrieving Azure PowerShell context: $($_.Exception.Message)" -ForegroundColor Red
+        }
+
+        # dump az cli context
+        Write-Host "`nCurrent Azure CLI context (az account show):" -ForegroundColor Yellow
+        try {
+            az account show | ConvertTo-Json | Out-Host
+        } catch {
+            Write-Host "Error retrieving Azure CLI context: $($_.Exception.Message)" -ForegroundColor Red
+        }
+        Write-Host "`n`n"
+    }
+
+    $coverageArg = $CollectCoverage ? "--collect:'XPlat Code Coverage'" : ""
+    $resultsArg = "--results-directory '$TestResultsPath'"
+    $loggerArg = "--logger 'trx'"
+
+    Invoke-LoggedCommand `
+        -Command "dotnet test $coverageArg $resultsArg $loggerArg" `
+        -AllowedExitCodes @(0, 1)
+}
+finally {
+    Pop-Location
+}
 
 $testExitCode = $LastExitCode
 
@@ -105,11 +161,8 @@ if ($CollectCoverage) {
             }
         }
     }
-}
 
-# Command Coverage Summary
-
-if($CollectCoverage) {
+    # Command Coverage Summary
     try{
         $CommandCoverageSummaryFile = "$TestResultsPath/Coverage.md"
 
@@ -181,4 +234,5 @@ if($CollectCoverage) {
         exit 1
     }
 }
+
 exit $testExitCode

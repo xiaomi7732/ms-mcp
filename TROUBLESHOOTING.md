@@ -39,7 +39,7 @@ Yes, you can enable multiple MCP servers that only load the services you need. I
   "servers": {
     "Azure Storage": {
       "type": "stdio",
-      "command": "<absolute-path-to>/azure-mcp/src/bin/Debug/net9.0/azmcp[.exe]",
+      "command": "<absolute-path-to>/azure-mcp/core/src/AzureMcp.Cli/bin/Debug/net9.0/azmcp[.exe]",
       "args": [
         "server",
         "start",
@@ -49,7 +49,7 @@ Yes, you can enable multiple MCP servers that only load the services you need. I
     },
     "Azure KeyVault": {
       "type": "stdio",
-      "command": "<absolute-path-to>/azure-mcp/src/bin/Debug/net9.0/azmcp[.exe]",
+      "command": "<absolute-path-to>/azure-mcp/core/src/AzureMcp.Cli/bin/Debug/net9.0/azmcp[.exe]",
       "args": [
         "server",
         "start",
