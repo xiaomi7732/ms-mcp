@@ -20,14 +20,12 @@ The Azure MCP Server updates automatically by default whenever a new release com
 - Added support for the following Azure Service Health operations: [[#998](https://github.com/Azure/azure-mcp/pull/998)]
   - `azmcp-resourcehealth-availability-status-get` - Get the availability status for a specific resource.
   - `azmcp-resourcehealth-availability-status-list` - List availability statuses for all resources in a subscription or resource group.
-- Added support for importing existing certificates into Azure Key Vault via the command `azmcp-keyvault-certificate-import`. This command accepts PFX or PEM certificate data (file path, base64, or raw PEM) with optional password protection. [[#968](https://github.com/Azure/azure-mcp/issues/968)]
-- Added support for listing repositories in Azure Container Registries via the command `azmcp-acr-registry-repository-list`. This lists repository names per registry with optional filtering by resource group or registry name. [[#983](https://github.com/Azure/azure-mcp/pull/983)]
-
-### Breaking Changes
-
-### Bugs Fixed
+- Added support for importing existing certificates into Azure Key Vault via the command `azmcp-keyvault-certificate-import`. [[#968](https://github.com/Azure/azure-mcp/issues/968)]
+- Added support for listing repositories in Azure Container Registries via the command `azmcp-acr-registry-repository-list`. [[#983](https://github.com/Azure/azure-mcp/pull/983)]
 
 ### Other Changes
+
+- Improved guidance for LLM interactions with Azure MCP server by adding rules around bestpractices tool calling to server instructions. [[#1007](https://github.com/Azure/azure-mcp/pull/1007)]
 
 #### Dependency Updates
 
