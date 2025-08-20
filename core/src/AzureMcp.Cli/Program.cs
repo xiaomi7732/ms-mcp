@@ -69,6 +69,7 @@ internal class Program
             new AzureMcp.AzureTerraformBestPractices.AzureTerraformBestPracticesSetup(),
             new AzureMcp.Deploy.DeploySetup(),
             new AzureMcp.Acr.AcrSetup(),
+            new AzureMcp.CloudArchitect.CloudArchitectSetup(),
             new AzureMcp.Foundry.FoundrySetup(),
             new AzureMcp.FunctionApp.FunctionAppSetup(),
             new AzureMcp.Grafana.GrafanaSetup(),

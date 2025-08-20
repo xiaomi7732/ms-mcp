@@ -35,6 +35,7 @@ The Azure MCP Server updates automatically by default whenever a new release com
   - `azmcp-azuremanagedlustre-filesystem-list`: List available Azure Managed Lustre filesystem. [[#1001](https://github.com/Azure/azure-mcp/issues/1001)]
   - `azmcp-azuremanagedlustre-filesystem-required-subnet-size`: Returns the number of IP addresses required for a specific SKU and size of Azure Managed Lustre filesystem. [[#1002](https://github.com/Azure/azure-mcp/issues/1002)]
 
+- Added new command for designing Azure Cloud Architecture through guided questions. [[#890](https://github.com/Azure/azure-mcp/pull/890)]
 - Added support for the following Azure Deploy and Azure Quota operations: [[#626](https://github.com/Azure/azure-mcp/pull/626)]
   - `azmcp_deploy_app_logs_get` - Get logs from Azure applications deployed using azd.
   - `azmcp_deploy_iac_rules_get` - Get Infrastructure as Code rules.
