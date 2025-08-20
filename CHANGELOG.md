@@ -10,6 +10,10 @@ The Azure MCP Server updates automatically by default whenever a new release com
 
 ### Breaking Changes
 
+- Renamed the following Storage tool option names: [[#1015](https://github.com/Azure/azure-mcp/pull/1015)]
+  - Renamed `azmcp-storage-account-create` `account-name` to `account`.
+  - Renamed `azmcp-storage-blob-batch-set-tier` `blob-names` to `blobs`.
+
 ### Bugs Fixed
 
 - Fixed SQL service test assertions to use case-insensitive string comparisons for resource type validation. [[#938](https://github.com/Azure/azure-mcp/pull/938)]
@@ -21,6 +25,7 @@ The Azure MCP Server updates automatically by default whenever a new release com
   - Removed dependency on `Azure.ResourceManager.Sql` package by migrating to Azure Resource Graph queries, reducing package size and improving startup performance.
 - Enhanced `BaseAzureService` with `EscapeKqlString` method for safe KQL query construction across all Azure services. [[#938](https://github.com/Azure/azure-mcp/pull/938)]
   - Fixed KQL string escaping in Workbooks service queries.
+- Standardized Azure Storage command descriptions, option names, and parameter names for consistency across all storage commands. Updated JSON serialization context to remove unused model types and improve organization. [[#1015](https://github.com/Azure/azure-mcp/pull/1015)]
 
 ## 0.5.7 (2025-08-19)
 
