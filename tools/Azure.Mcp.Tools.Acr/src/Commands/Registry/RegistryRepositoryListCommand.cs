@@ -1,0 +1,75 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+using Azure.Mcp.Core.Models.Command;
+using Azure.Mcp.Core.Services.Telemetry;
+using Azure.Mcp.Tools.Acr.Options;
+using Azure.Mcp.Tools.Acr.Options.Registry;
+using Azure.Mcp.Tools.Acr.Services;
+using Microsoft.Extensions.Logging;
+
+namespace Azure.Mcp.Tools.Acr.Commands.Registry;
+
+public sealed class RegistryRepositoryListCommand(ILogger<RegistryRepositoryListCommand> logger)
+    : BaseAcrCommand<RegistryRepositoryListOptions>
+{
+    private const string CommandTitle = "List Container Registry Repositories";
+    private readonly ILogger<RegistryRepositoryListCommand> _logger = logger;
+
+    public override string Name => "list";
+
+    public override string Description =>
+        """
+        List repositories in Azure Container Registries. By default, lists repositories for all registries in the subscription.
+        You can narrow the scope using --resource-group and/or --registry to list repositories for a specific registry only.
+        """;
+
+    public override string Title => CommandTitle;
+
+    public override ToolMetadata Metadata => new() { Destructive = false, ReadOnly = true };
+
+    protected override void RegisterOptions(Command command)
+    {
+        base.RegisterOptions(command);
+        UseResourceGroup();
+        command.AddOption(AcrOptionDefinitions.Registry);
+    }
+
+    public override async Task<CommandResponse> ExecuteAsync(CommandContext context, ParseResult parseResult)
+    {
+        var options = BindOptions(parseResult);
+
+        try
+        {
+            if (!Validate(parseResult.CommandResult, context.Response).IsValid)
+            {
+                return context.Response;
+            }
+
+            var service = context.GetService<IAcrService>();
+            var map = await service.ListRegistryRepositories(
+                options.Subscription!,
+                options.ResourceGroup,
+                options.Registry,
+                options.Tenant,
+                options.RetryPolicy);
+
+            context.Response.Results = map.Count > 0
+                ? ResponseResult.Create(
+                    new RegistryRepositoryListCommandResult(map),
+                    AcrJsonContext.Default.RegistryRepositoryListCommandResult)
+                : null;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex,
+                "Error listing ACR repositories. Subscription: {Subscription}, ResourceGroup: {ResourceGroup}, Registry: {Registry}",
+                options.Subscription, options.ResourceGroup, options.Registry);
+            HandleException(context, ex);
+        }
+
+        return context.Response;
+    }
+
+    internal record RegistryRepositoryListCommandResult(Dictionary<string, List<string>> RepositoriesByRegistry);
+}

@@ -1,0 +1,40 @@
+// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+using System.Text.Json.Serialization;
+using Azure.Mcp.Tools.Storage.Commands.Account;
+using Azure.Mcp.Tools.Storage.Commands.Blob;
+using Azure.Mcp.Tools.Storage.Commands.Blob.Batch;
+using Azure.Mcp.Tools.Storage.Commands.Blob.Container;
+using Azure.Mcp.Tools.Storage.Commands.DataLake.Directory;
+using Azure.Mcp.Tools.Storage.Commands.DataLake.FileSystem;
+using Azure.Mcp.Tools.Storage.Commands.Queue.Message;
+using Azure.Mcp.Tools.Storage.Commands.Share.File;
+using Azure.Mcp.Tools.Storage.Commands.Table;
+using Azure.Mcp.Tools.Storage.Models;
+
+namespace Azure.Mcp.Tools.Storage.Commands;
+
+[JsonSerializable(typeof(AccountCreateCommand.AccountCreateCommandResult), TypeInfoPropertyName = "AccountCreateCommandResult")]
+[JsonSerializable(typeof(AccountDetailsCommand.AccountDetailsCommandResult), TypeInfoPropertyName = "AccountDetailsCommandResult")]
+[JsonSerializable(typeof(AccountListCommand.AccountListCommandResult), TypeInfoPropertyName = "AccountListCommandResult")]
+[JsonSerializable(typeof(BatchSetTierCommand.BatchSetTierCommandResult))]
+[JsonSerializable(typeof(BlobDetailsCommand.BlobDetailsCommandResult))]
+[JsonSerializable(typeof(BlobListCommand.BlobListCommandResult))]
+[JsonSerializable(typeof(BlobUploadResult))]
+[JsonSerializable(typeof(ContainerCreateCommand.ContainerCreateCommandResult))]
+[JsonSerializable(typeof(ContainerDetailsCommand.ContainerDetailsCommandResult))]
+[JsonSerializable(typeof(ContainerListCommand.ContainerListCommandResult))]
+[JsonSerializable(typeof(DataLakePathInfo))]
+[JsonSerializable(typeof(DirectoryCreateCommand.DirectoryCreateCommandResult))]
+[JsonSerializable(typeof(FileListCommand.FileListCommandResult))]
+[JsonSerializable(typeof(FileShareItemInfo))]
+[JsonSerializable(typeof(FileSystemListPathsCommand.FileSystemListPathsCommandResult))]
+[JsonSerializable(typeof(QueueMessageSendCommand.QueueMessageSendCommandResult))]
+[JsonSerializable(typeof(QueueMessageSendResult))]
+[JsonSerializable(typeof(StorageAccountInfo))]
+[JsonSerializable(typeof(TableListCommand.TableListCommandResult))]
+[JsonSourceGenerationOptions(PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase)]
+internal sealed partial class StorageJsonContext : JsonSerializerContext
+{
+}
