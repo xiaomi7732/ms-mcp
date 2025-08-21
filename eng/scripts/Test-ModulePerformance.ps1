@@ -9,13 +9,17 @@ param(
 
 $combinations = @()
 @($false, $true) | ForEach-Object {
-    $Trimmed = $_
+    $SingleFile = $_
     @($false, $true) | ForEach-Object {
-        $ReadyToRun = $_
-        $combinations += @{
-            Name = "$($Trimmed ? 'aot' : 'no-aot')/$($ReadyToRun ? 'r2r' : 'no-r2r')"
-            Trimmed = $Trimmed
-            ReadyToRun = $ReadyToRun
+        $Trimmed = $_
+        @($false, $true) | ForEach-Object {
+            $ReadyToRun = $_
+            $combinations += @{
+                Name = "$($Trimmed ? 'aot' : 'no-aot')/$($ReadyToRun ? 'r2r' : 'no-r2r')"
+                Trimmed = $Trimmed
+                ReadyToRun = $ReadyToRun
+                SingleFile = $SingleFile
+            }
         }
     }
 }

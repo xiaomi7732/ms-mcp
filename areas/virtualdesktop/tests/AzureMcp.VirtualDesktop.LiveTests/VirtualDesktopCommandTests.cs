@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System.Text.Json;
+using Azure.Mcp.Tests;
 using AzureMcp.Tests.Client;
 using AzureMcp.Tests.Client.Helpers;
 using Xunit;
@@ -52,7 +53,7 @@ public class VirtualDesktopCommandTests(LiveTestFixture liveTestFixture, ITestOu
         var hostpools = result.AssertProperty("hostpools");
         Assert.Equal(JsonValueKind.Array, hostpools.ValueKind);
 
-        // Check results format if any hostpools exist  
+        // Check results format if any hostpools exist
         foreach (var hostpool in hostpools.EnumerateArray())
         {
             Assert.True(hostpool.ValueKind == JsonValueKind.Object);

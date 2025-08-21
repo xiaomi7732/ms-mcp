@@ -14,6 +14,8 @@ using AzureMcp.Core.Services.Azure.Tenant;
 
 namespace AzureMcp.AppConfig.Services;
 
+using ETag = AzureMcp.Core.Models.ETag;
+
 public class AppConfigService(ISubscriptionService subscriptionService, ITenantService tenantService)
     : BaseAzureService(tenantService), IAppConfigService
 {

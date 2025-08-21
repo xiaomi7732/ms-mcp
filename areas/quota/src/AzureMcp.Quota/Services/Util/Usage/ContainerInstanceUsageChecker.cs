@@ -6,7 +6,7 @@ using Azure.ResourceManager.ContainerInstance;
 using Azure.ResourceManager.ContainerInstance.Models;
 using Microsoft.Extensions.Logging;
 
-namespace AzureMcp.Quota.Services.Util;
+namespace AzureMcp.Quota.Services.Util.Usage;
 
 public class ContainerInstanceUsageChecker(TokenCredential credential, string subscriptionId, ILogger<ContainerInstanceUsageChecker> logger) : AzureUsageChecker(credential, subscriptionId, logger)
 {

@@ -7,7 +7,7 @@ using Azure.ResourceManager.Compute;
 using Azure.ResourceManager.Compute.Models;
 using Microsoft.Extensions.Logging;
 
-namespace AzureMcp.Quota.Services.Util;
+namespace AzureMcp.Quota.Services.Util.Usage;
 
 public class ComputeUsageChecker(TokenCredential credential, string subscriptionId, ILogger<ComputeUsageChecker> logger) : AzureUsageChecker(credential, subscriptionId, logger)
 {

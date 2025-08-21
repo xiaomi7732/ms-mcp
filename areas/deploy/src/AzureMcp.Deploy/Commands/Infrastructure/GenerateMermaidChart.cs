@@ -5,9 +5,10 @@ using System.Collections.Immutable;
 using System.Text;
 using Azure.ResourceManager.Network.Models;
 using AzureMcp.Deploy.Options;
+using AzureMcp.Deploy.Models;
 using Microsoft.Extensions.ObjectPool;
 
-namespace AzureMcp.Deploy.Commands;
+namespace AzureMcp.Deploy.Commands.Infrastructure;
 
 public static class GenerateMermaidChart
 {

@@ -7,7 +7,7 @@ using Azure.ResourceManager.Storage;
 using Azure.ResourceManager.Storage.Models;
 using Microsoft.Extensions.Logging;
 
-namespace AzureMcp.Quota.Services.Util;
+namespace AzureMcp.Quota.Services.Util.Usage;
 
 public class StorageUsageChecker(TokenCredential credential, string subscriptionId, ILogger<StorageUsageChecker> logger) : AzureUsageChecker(credential, subscriptionId, logger)
 {

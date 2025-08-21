@@ -4,7 +4,7 @@
 using AzureMcp.Deploy.Services.Util;
 using Xunit;
 
-namespace AzureMcp.Deploy.Services.Util;
+namespace AzureMcp.Deploy.UnitTests;
 
 public sealed class DeploymentPlanTemplateUtilV2Tests
 {

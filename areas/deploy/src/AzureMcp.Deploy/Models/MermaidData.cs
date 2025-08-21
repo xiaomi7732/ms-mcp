@@ -3,7 +3,7 @@
 
 using System.Text.Json.Serialization;
 
-namespace AzureMcp.Deploy.Commands;
+namespace AzureMcp.Deploy.Models;
 
 public sealed class MermaidData
 {

@@ -4,6 +4,7 @@
 using System.Text.Json;
 using AzureMcp.Core.Services.Azure.Tenant;
 using AzureMcp.Core.Services.Caching;
+using AzureMcp.Tests;
 using AzureMcp.Marketplace.Services;
 using AzureMcp.Tests.Client;
 using AzureMcp.Tests.Client.Helpers;

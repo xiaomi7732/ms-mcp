@@ -3,7 +3,8 @@
 
 [CmdletBinding(DefaultParameterSetName='none')]
 param(
-    [string] $Version,
+    [string] $VersionSuffix,
+    [string] $ServerName,
     [switch] $Trimmed,
     [switch] $DebugBuild
 )
@@ -12,17 +13,19 @@ param(
 $root = $RepoRoot.Path.Replace('\', '/')
 $distPath = "$root/.work"
 $dockerFile = "$root/Dockerfile"
+$properties = & "$PSScriptRoot/Get-ProjectProperties.ps1" -ProjectName "$ServerName.csproj"
+$dockerImageName = $properties.DockerImageName
 
 if(!$Version) {
-    $Version = & "$PSScriptRoot/Get-Version.ps1"
+    $Version = $properties.Version
 }
 
 # Will fix this when we update Dockerfile to multi-platform
 $os = "linux"
 $arch = "x64"
-$tag = "azure/azure-mcp:$Version";
+$tag = "$dockerImageName`:$Version$VersionSuffix";
 
-& "$root/eng/scripts/Build-Module.ps1" -SelfContained -Trimmed:$Trimmed -DebugBuild:$DebugBuild -OperatingSystem $os -Architecture $arch
+& "$root/eng/scripts/Build-Module.ps1" -ServerName $ServerName -VersionSuffix $VersionSuffix -SelfContained -Trimmed:$Trimmed -DebugBuild:$DebugBuild -OperatingSystem $os -Architecture $arch
 
 [string]$publishDirectory = $([System.IO.Path]::Combine($distPath, "$os-$arch", "dist"))
 $relativeDirectory = $(Resolve-Path $publishDirectory -Relative).Replace('\', '/')

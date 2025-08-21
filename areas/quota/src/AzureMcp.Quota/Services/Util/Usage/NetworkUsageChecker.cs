@@ -5,7 +5,7 @@ using Azure.Core;
 using Azure.ResourceManager.Network;
 using Microsoft.Extensions.Logging;
 
-namespace AzureMcp.Quota.Services.Util;
+namespace AzureMcp.Quota.Services.Util.Usage;
 
 public class NetworkUsageChecker(TokenCredential credential, string subscriptionId, ILogger<NetworkUsageChecker> logger) : AzureUsageChecker(credential, subscriptionId, logger)
 {

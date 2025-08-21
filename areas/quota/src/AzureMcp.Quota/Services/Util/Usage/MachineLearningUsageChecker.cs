@@ -5,7 +5,7 @@ using Azure.Core;
 using Azure.ResourceManager.MachineLearning;
 using Microsoft.Extensions.Logging;
 
-namespace AzureMcp.Quota.Services.Util;
+namespace AzureMcp.Quota.Services.Util.Usage;
 
 public class MachineLearningUsageChecker(TokenCredential credential, string subscriptionId, ILogger<MachineLearningUsageChecker> logger) : AzureUsageChecker(credential, subscriptionId, logger)
 {

@@ -15,29 +15,29 @@ param(
 $ErrorActionPreference = 'Stop'
 
 . "$PSScriptRoot/../common/scripts/common.ps1"
-$root = $RepoRoot.Path.Replace('\', '/')
+$RepoRoot = $RepoRoot.Path.Replace('\', '/')
 
-$packagesPath = "$root/.work/platform"
-$distPath = "$root/.dist"
+$buildOutputPath = "$RepoRoot/.work/build"
+$packageOutputPath = "$RepoRoot/.work/package"
 
-$version = [AzureEngSemanticVersion]::ParseVersionString((& "$PSScriptRoot/Get-Version.ps1"))
-$version.PrereleaseLabel = 'alpha'
-$version.PrereleaseNumber = [int]::Parse((Get-Date -UFormat %s))
+$prereleaseLabel = 'alpha'
+$prereleaseNumber = [int]::Parse((Get-Date -UFormat %s))
+$versionSuffix = "-$prereleaseLabel.$prereleaseNumber"
 
 function Build($os, $arch) {
-    & "$root/eng/scripts/Build-Module.ps1" `
-        -Version $version `
+    & "$RepoRoot/eng/scripts/Build-Module.ps1" `
+        -VersionSuffix $versionSuffix `
         -OperatingSystem $os `
         -Architecture $arch `
         -SelfContained:(!$NoSelfContained) `
         -Trimmed:$Trimmed `
-        -OutputPath $packagesPath `
+        -OutputPath $buildOutputPath `
         -DebugBuild:$DebugBuild `
         -BuildNative:$BuildNative
 }
 
-Remove-Item -Path $packagesPath -Recurse -Force -ErrorAction SilentlyContinue -ProgressAction SilentlyContinue
-Remove-Item -Path $distPath -Recurse -Force -ErrorAction SilentlyContinue -ProgressAction SilentlyContinue
+Remove-Item -Path $buildOutputPath -Recurse -Force -ErrorAction SilentlyContinue -ProgressAction SilentlyContinue
+Remove-Item -Path $packageOutputPath -Recurse -Force -ErrorAction SilentlyContinue -ProgressAction SilentlyContinue
 
 if($AllPlatforms) {
     Build -os linux -arch x64
@@ -61,29 +61,23 @@ else {
     Build -os $os -arch $arch
 }
 
-& "$root/eng/scripts/Pack-Modules.ps1" `
-    -Version $version `
-    -ArtifactsPath $packagesPath `
+& "$RepoRoot/eng/scripts/Pack-Modules.ps1" `
+    -ArtifactsPath $buildOutputPath `
     -UsePaths:(!$NoUsePaths) `
-    -OutputPath $distPath
-
-$tgzFile = Get-ChildItem -Path "$distPath/wrapper" -Filter '*.tgz'
-| Select-Object -First 1
-
-$testSettingsPath = "$root/.testsettings.json"
-if($tgzFile -and (Test-Path -Path $testSettingsPath)) {
-    $testSettings = Get-Content -Path $testSettingsPath -Raw | ConvertFrom-Json -AsHashtable
-    $testSettings.TestPackage = "file://$tgzFile"
-    $testSettings | ConvertTo-Json -Depth 10 | Set-Content -Path $testSettingsPath -NoNewline
-}
+    -OutputPath $packageOutputPath
 
 if ($VerifyNpx) {
-    Push-Location -Path $root
-    try {
-        Invoke-LoggedCommand "npx -y clear-npx-cache"
-        Invoke-LoggedCommand "npx -y `"file://$tgzFile`" tools list"
-    }
-    finally {
-        Pop-Location
+    $tgzFiles = Get-ChildItem -Path $packageOutputPath -Filter '*.tgz'
+    | Where-Object { $_.Directory.Name -eq 'wrapper' }
+
+    foreach($tgzFile in $tgzFiles) {
+        Push-Location -Path $RepoRoot
+        try {
+            Invoke-LoggedCommand "npx -y clear-npx-cache"
+            Invoke-LoggedCommand "npx -y `"file://$tgzFile`" tools list"
+        }
+        finally {
+            Pop-Location
+        }
     }
 }

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace AzureMcp.Deploy.Commands;
+namespace AzureMcp.Deploy.Models;
 
 public static class AzureServiceConstants
 {

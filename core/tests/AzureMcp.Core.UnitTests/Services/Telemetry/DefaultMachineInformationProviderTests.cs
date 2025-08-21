@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using NSubstitute;
 using Xunit;
 
-namespace AzureMcp.Core.LiveTests.Services.Telemetry;
+namespace AzureMcp.Core.UnitTests.Services.Telemetry;
 
 public class DefaultMachineInformationProviderTests
 {

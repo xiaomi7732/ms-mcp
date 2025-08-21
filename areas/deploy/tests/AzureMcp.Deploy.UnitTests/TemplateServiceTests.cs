@@ -4,7 +4,7 @@
 using AzureMcp.Deploy.Services.Templates;
 using Xunit;
 
-namespace AzureMcp.Deploy.Services.Templates;
+namespace AzureMcp.Deploy.UnitTests;
 
 public sealed class TemplateServiceTests
 {

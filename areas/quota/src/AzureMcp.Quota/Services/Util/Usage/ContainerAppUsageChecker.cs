@@ -6,7 +6,7 @@ using Azure.ResourceManager.AppContainers;
 using Azure.ResourceManager.AppContainers.Models;
 using Microsoft.Extensions.Logging;
 
-namespace AzureMcp.Quota.Services.Util;
+namespace AzureMcp.Quota.Services.Util.Usage;
 
 public class ContainerAppUsageChecker(TokenCredential credential, string subscriptionId, ILogger<ContainerAppUsageChecker> logger) : AzureUsageChecker(credential, subscriptionId, logger)
 {

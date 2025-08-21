@@ -6,7 +6,7 @@ using Azure.ResourceManager.HDInsight;
 using Azure.ResourceManager.HDInsight.Models;
 using Microsoft.Extensions.Logging;
 
-namespace AzureMcp.Quota.Services.Util;
+namespace AzureMcp.Quota.Services.Util.Usage;
 
 public class HDInsightUsageChecker(TokenCredential credential, string subscriptionId, ILogger<HDInsightUsageChecker> logger) : AzureUsageChecker(credential, subscriptionId, logger)
 {

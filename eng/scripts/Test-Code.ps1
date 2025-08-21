@@ -4,7 +4,7 @@
 [CmdletBinding()]
 param(
     [string] $TestResultsPath,
-    [string[]] $Areas,
+    [string[]] $Areas,  # for PR
     [ValidateSet('Live', 'Unit', 'All')]
     [string] $TestType = 'Unit',
     [switch] $CollectCoverage,
@@ -29,29 +29,6 @@ if (!$TestResultsPath) {
 
 # Clean previous results
 Remove-Item -Recurse -Force $TestResultsPath -ErrorAction SilentlyContinue
-
-function Get-Areas {
-    param(
-        [string[]]$areas
-    )
-
-    if ($areas) {
-        return $areas | ForEach-Object { $_.ToLower() }
-    }
-
-    # Find all areas
-    $discoveredAreas = @('core')
-    $areasDir = "$RepoRoot/areas"
-    if (Test-Path $areasDir) {
-        Get-ChildItem -Path $areasDir -Directory | ForEach-Object {
-            $areaTestsPath = "$($_.FullName)/tests"
-            if (Test-Path $areaTestsPath) {
-                $discoveredAreas += $_.Name.ToLower()
-            }
-        }
-    }
-    return $discoveredAreas
-}
 
 # Gets all area projects those are excluded using BuildNative condition.
 function Get-NativeExcludedAreas {
@@ -89,15 +66,21 @@ function GetTestsRootDirs {
     )
 
     $testsRootDirs = @()
+
+    if (!$areas) {
+        return $testsRootDirs += $RepoRoot
+    }
+
     foreach ($area in $areas) {
-        $testsPath = $area -eq 'core' ? "$RepoRoot/core/tests" : "$RepoRoot/areas/$area/tests"
-        if (Test-Path $testsPath) {
-            $testsRootDirs += $testsPath
+        $rootedPath = "$RepoRoot/$area"
+        if (Test-Path $rootedPath) {
+            $testsRootDirs += $rootedPath
         } else {
-            Write-Error "Tests path '$testsPath' does not exist."
+            Write-Error "Area path '$rootedPath' does not exist."
             return $null
         }
     }
+
     return $testsRootDirs
 }
 
@@ -193,7 +176,7 @@ function CreateTestSolution {
     Push-Location $workPath
     try {
         dotnet new sln -n "Tests" | Out-Null
-        dotnet sln add $testProjects --in-root | Out-Null
+        dotnet sln add $testProjects --in-root | Out-Host
     }
     finally {
         Pop-Location
@@ -204,18 +187,16 @@ function CreateTestSolution {
 
 # main
 
-$areas = Get-Areas -areas $Areas
-
 if ($TestNativeBuild) {
     $excludedAreas = Get-NativeExcludedAreas
     $nonNativeAreas = @($areas | Where-Object { $_ -in $excludedAreas })
     $areas = @($areas | Where-Object { $_ -notin $excludedAreas })
-    
+
     if ($areas.Count -eq 0) {
         Write-Warning "All the specified area(s) [$($nonNativeAreas -join ', ')] are native incompatible, specify areas that support native builds or run without -TestNativeBuild."
         exit 0
     }
-    
+
     if ($nonNativeAreas.Count -gt 0) {
         Write-Warning "The following native incompatible areas will be excluded from native tests:"
         Write-Warning "  $($nonNativeAreas -join ', ')"

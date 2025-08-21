@@ -1,16 +1,5 @@
-trigger:
-  branches:
-    include:
-      - main
-      - feature/*
-      - hotfix/*
-
-pr:
-  branches:
-    include:
-      - main
-      - feature/*
-      - hotfix/*
+trigger: none
+pr: none
 
 extends:
   template: /eng/pipelines/templates/common.yml
@@ -20,3 +9,4 @@ extends:
     PublishPackages: ${{ ne(variables['Build.Reason'], 'PullRequest') }}
     RunLiveTests: true
     ReleaseRun: ${{ and(eq(variables['Build.Reason'], 'Manual'), or(eq(variables['Build.SourceBranch'], 'refs/heads/main'), startswith(variables['Build.SourceBranch'], 'refs/heads/hotfix/'))) }}
+    ServerName: Azure.Mcp.Server

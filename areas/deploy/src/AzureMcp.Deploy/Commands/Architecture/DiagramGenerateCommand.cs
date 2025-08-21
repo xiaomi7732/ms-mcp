@@ -6,6 +6,8 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using AzureMcp.Core.Commands;
 using AzureMcp.Core.Helpers;
+using AzureMcp.Deploy.Commands.Infrastructure;
+using AzureMcp.Deploy.Models;
 using AzureMcp.Deploy.Options;
 using AzureMcp.Deploy.Options.Architecture;
 using AzureMcp.Deploy.Services.Templates;

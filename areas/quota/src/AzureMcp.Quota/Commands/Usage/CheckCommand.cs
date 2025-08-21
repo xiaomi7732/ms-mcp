@@ -9,6 +9,7 @@ using AzureMcp.Quota.Options;
 using AzureMcp.Quota.Options.Usage;
 using AzureMcp.Quota.Services;
 using AzureMcp.Quota.Services.Util;
+using AzureMcp.Quota.Services.Util.Usage;
 using Microsoft.Extensions.Logging;
 
 namespace AzureMcp.Quota.Commands.Usage;

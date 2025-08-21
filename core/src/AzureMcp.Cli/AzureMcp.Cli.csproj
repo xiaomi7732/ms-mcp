@@ -1,9 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <CliName>azmcp</CliName>
+    <AssemblyTitle>Azure MCP Server</AssemblyTitle>
+    <Description>Azure MCP Server - Model Context Protocol implementation for Azure</Description>
+    <ReadmeUrl>https://github.com/Microsoft/mcp/blob/main/servers/Azure.Mcp.Server#readme</ReadmeUrl>
+
+    <NpmPackageName>@azure/mcp</NpmPackageName>
+    <NpmPackageKeywords>azure,mcp,model-context-protocol</NpmPackageKeywords>
+    <DockerImageName>azure-sdk/azure-mcp</DockerImageName>
+  </PropertyGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <CliName>azmcp</CliName>
     <AssemblyName>$(CliName)</AssemblyName>
-    <AssemblyTitle>Azure MCP Server</AssemblyTitle>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <!-- Publishing settings -->
     <IsAotCompatible>true</IsAotCompatible>
@@ -54,7 +64,6 @@
   <ItemGroup>
     <!-- We need a package reference for Cosmos so we have a path to the native assets for exclusion later -->
     <PackageReference Include="Microsoft.Azure.Cosmos" GeneratePathProperty="true" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="ModelContextProtocol" />
     <PackageReference Include="System.CommandLine" />
   </ItemGroup>

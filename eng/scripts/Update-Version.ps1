@@ -5,6 +5,8 @@ param(
     [Parameter(Mandatory=$true, ParameterSetName='Release')]
     [string] $Version,
     [Parameter(Mandatory=$true, ParameterSetName='Release')]
+    [string] $ServerName,
+    [Parameter(Mandatory=$true, ParameterSetName='Release')]
     [string] $ReleaseDate,
     [Parameter(ParameterSetName='Release')]
     [boolean] $ReplaceLatestEntryTitle=$true
@@ -13,7 +15,13 @@ param(
 . "$PSScriptRoot/../common/scripts/common.ps1"
 $RepoRoot = $RepoRoot.Path.Replace('\', '/')
 
-$projectFile = "$RepoRoot/Directory.Build.props"
+$projectFile = "$RepoRoot/servers/$ServerName/src/$ServerName.csproj"
+$changeLogPath = "$RepoRoot/servers/$ServerName/CHANGELOG.md"
+if(!(Test-Path $projectFile)) {
+    Write-Error "Project file $projectFile does not exist."
+    exit 1
+}
+
 $project = [xml](Get-Content $projectFile)
 $currentVersion = $project.Project.PropertyGroup.Version | Select-Object -First 1
 
@@ -36,10 +44,10 @@ $projectText | Set-Content $projectFile -Force -NoNewLine
 
 if ($autoVersion) {
   & "$RepoRoot/eng/common/scripts/Update-ChangeLog.ps1" -Version $Version `
-  -ChangelogPath "$RepoRoot/CHANGELOG.md" -Unreleased $True
+  -ChangelogPath $changeLogPath -Unreleased $True
 }
 else {
   & "$RepoRoot/eng/common/scripts/Update-ChangeLog.ps1" -Version $Version `
-  -ChangelogPath "$RepoRoot/CHANGELOG.md" -Unreleased $False `
+  -ChangelogPath $changeLogPath -Unreleased $False `
   -ReplaceLatestEntryTitle $ReplaceLatestEntryTitle -ReleaseDate $ReleaseDate
 }

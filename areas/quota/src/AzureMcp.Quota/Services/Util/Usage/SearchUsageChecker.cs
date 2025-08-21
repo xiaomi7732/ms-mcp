@@ -6,7 +6,7 @@ using Azure.ResourceManager.Search;
 using Azure.ResourceManager.Search.Models;
 using Microsoft.Extensions.Logging;
 
-namespace AzureMcp.Quota.Services.Util;
+namespace AzureMcp.Quota.Services.Util.Usage;
 
 public class SearchUsageChecker(TokenCredential credential, string subscriptionId, ILogger<SearchUsageChecker> logger) : AzureUsageChecker(credential, subscriptionId, logger)
 {
