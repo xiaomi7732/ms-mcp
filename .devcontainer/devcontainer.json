@@ -1,9 +1,7 @@
 {
-    "name": "Azure MCP Codespace",
+    "image": "mcr.microsoft.com/devcontainers/dotnet:9.0",
+    "name": "Microsoft MCP Codespace",
     "features": {
-        "ghcr.io/devcontainers/features/dotnet:2": {
-            "version": "9.0.300"
-        },
         "ghcr.io/devcontainers/features/node:1": {
             "version": "20"
         },
@@ -13,7 +11,7 @@
     },
     "hostRequirements": {
         "cpus": 4,
-        "memory": "8gb",
+        "memory": "16gb",
         "storage": "32gb"
     },
     "customizations": {
@@ -37,5 +35,6 @@
             }
         }
     },
+    "remoteUser": "root",
     "postCreateCommand": "dotnet --version && az --version && azd version && pwsh --version && npm --version"
 }
