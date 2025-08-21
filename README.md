@@ -29,7 +29,7 @@ Below are Microsoft's official MCP server implementations:
 
 ### 🔷 Azure MCP Server
 
-- **Repository**: [azure/azure-mcp](https://github.com/azure/azure-mcp)
+- **Repository**: [microsoft/mcp](https://github.com/microsoft/mcp/tree/main/servers/Azure.Mcp.Server#readme)
 - **Description**: Implements the MCP standard to manage Azure resources, enabling declarative provisioning and integration with AI workflows.
 
 ---
@@ -71,7 +71,7 @@ Below are Microsoft's official MCP server implementations:
 ### 💻 Microsoft Dev Box MCP
 
 - **Package**: [@microsoft/devbox-mcp](https://www.npmjs.com/package/@microsoft/devbox-mcp)
-- **Description**: An MCP server for [Microsoft Dev Box](https://azure.microsoft.com/en-us/products/dev-box). Enables natural language interactions for developer-focused operations like managing Dev Boxes, configuring environments, and handling pools. Check out the [README](https://www.npmjs.com/package/@microsoft/devbox-mcp?activeTab=readme) for more details. Use this [one-click link](https://insiders.vscode.dev/redirect/mcp/install?name=Dev%20Box&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fdevbox-mcp%40latest%22%5D%7D) to install Dev Box MCP in your VS Code.
+- **Description**: An MCP server for [Microsoft Dev Box](https://azure.microsoft.com/products/dev-box). Enables natural language interactions for developer-focused operations like managing Dev Boxes, configuring environments, and handling pools. Check out the [README](https://www.npmjs.com/package/@microsoft/devbox-mcp?activeTab=readme) for more details. Use this [one-click link](https://insiders.vscode.dev/redirect/mcp/install?name=Dev%20Box&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40microsoft%2Fdevbox-mcp%40latest%22%5D%7D) to install Dev Box MCP in your VS Code.
 
 ---
 
@@ -150,6 +150,6 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
 trademarks or logos is subject to and must follow
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
+[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/legal/intellectualproperty/trademarks/usage/general).
 Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
 Any use of third-party trademarks or logos are subject to those third-party's policies.

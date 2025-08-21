@@ -4,7 +4,7 @@ The Azure MCP Server implements the [MCP specification](https://modelcontextprot
 
 
 >[!WARNING]
->**Deprecation Notice: SSE transport mode has been removed in version [0.4.0 (2025-07-15)](https://github.com/Azure/azure-mcp/blob/main/CHANGELOG.md#breaking-changes-7).**
+>**Deprecation Notice: SSE transport mode has been removed in version [0.4.0 (2025-07-15)](https://github.com/microsoft/mcp/blob/main/CHANGELOG.md#breaking-changes-7).**
 >
 > SSE was deprecated in MCP `2025-03-26` due to [security vulnerabilities and architectural limitations](https://blog.fka.dev/blog/2025-06-06-why-mcp-deprecated-sse-and-go-with-streamable-http/). Users must discontinue use of SSE transport mode and upgrade to version `0.4.0` or newer to maintain compatibility with current MCP clients.
 
@@ -24,9 +24,9 @@ The Azure MCP Server implements the [MCP specification](https://modelcontextprot
     - You should see the Azure MCP Server in the list of tools
 1. Try a prompt that tells the agent to use the Azure MCP Server, such as `List my Azure Storage containers`
     - The agent should be able to use the Azure MCP Server tools to complete your query
-1. Check out the [documentation](https://learn.microsoft.com/azure/developer/azure-mcp-server/) and review the [troubleshooting guide](https://github.com/Azure/azure-mcp/blob/main/TROUBLESHOOTING.md) for commonly asked questions
+1. Check out the [documentation](https://learn.microsoft.com/azure/developer/azure-mcp-server/) and review the [troubleshooting guide](https://github.com/microsoft/mcp/blob/main/TROUBLESHOOTING.md) for commonly asked questions
 1. We're building this in the open. Your feedback is much appreciated, and will help us shape the future of the Azure MCP server
-    - 👉 [Open an issue in the public repository](https://github.com/Azure/azure-mcp/issues/new/choose)
+    - 👉 [Open an issue in the public repository](https://github.com/microsoft/mcp/issues/new/choose)
 
 
 ## ✨ What can you do with the Azure MCP Server?
@@ -326,11 +326,11 @@ The Azure MCP Server supercharges your agents with Azure context. Here are some 
 
 * Design Azure cloud architectures through guided questions
 
-Agents and models can discover and learn best practices and usage guidelines for the `azd` MCP tool. For more information, see [AZD Best Practices](https://github.com/Azure/azure-mcp/tree/main/areas/extension/src/AzureMcp.Extension/Resources/azd-best-practices.txt).
+Agents and models can discover and learn best practices and usage guidelines for the `azd` MCP tool. For more information, see [AZD Best Practices](https://github.com/microsoft/mcp/tree/main/areas/extension/src/AzureMcp.Extension/Resources/azd-best-practices.txt).
 
 </details>
 
-For detailed command documentation and examples, see [Azure MCP Commands](https://github.com/Azure/azure-mcp/blob/main/docs/azmcp-commands.md).
+For detailed command documentation and examples, see [Azure MCP Commands](https://github.com/microsoft/mcp/blob/main/docs/azmcp-commands.md).
 
 ## 🔄️ Upgrading Existing Installs to the Latest Version
 
@@ -462,18 +462,18 @@ To opt out, set the environment variable `AZURE_MCP_COLLECT_TELEMETRY` to `false
 
 ## 📝 Troubleshooting
 
-See [Troubleshooting guide](https://github.com/Azure/azure-mcp/blob/main/TROUBLESHOOTING.md#128-tool-limit-issue) for help with common issues and logging.
+See [Troubleshooting guide](https://github.com/microsoft/mcp/blob/main/TROUBLESHOOTING.md#128-tool-limit-issue) for help with common issues and logging.
 
 ### 🔑 Authentication
 
 <details>
 <summary>Authentication options including DefaultAzureCredential flow, RBAC permissions, troubleshooting, and production credentials</summary>
 
-The Azure MCP Server uses the Azure Identity library for .NET to authenticate to Microsoft Entra ID. For detailed information, see [Authentication Fundamentals](https://github.com/Azure/azure-mcp/blob/main/docs/Authentication.md#authentication-fundamentals).
+The Azure MCP Server uses the Azure Identity library for .NET to authenticate to Microsoft Entra ID. For detailed information, see [Authentication Fundamentals](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md#authentication-fundamentals).
 
-If you're running into any issues with authentication, visit our [troubleshooting guide](https://github.com/Azure/azure-mcp/blob/main/TROUBLESHOOTING.md#authentication).
+If you're running into any issues with authentication, visit our [troubleshooting guide](https://github.com/microsoft/mcp/blob/main/TROUBLESHOOTING.md#authentication).
 
-For enterprise authentication scenarios, including network restrictions, security policies, and protected resources, see [Authentication Scenarios in Enterprise Environments](https://github.com/Azure/azure-mcp/blob/main/docs/Authentication.md#authentication-scenarios-in-enterprise-environments).
+For enterprise authentication scenarios, including network restrictions, security policies, and protected resources, see [Authentication Scenarios in Enterprise Environments](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md#authentication-scenarios-in-enterprise-environments).
 </details>
 
 ## 🛡️ Security Note
@@ -486,7 +486,7 @@ MCP as a phenomenon is very novel and cutting-edge. As with all new technology s
 
 We welcome contributions to the Azure MCP Server! Whether you're fixing bugs, adding new features, or improving documentation, your contributions are welcome.
 
-Please read our [Contributing Guide](https://github.com/Azure/azure-mcp/blob/main/CONTRIBUTING.md) for guidelines on:
+Please read our [Contributing Guide](https://github.com/microsoft/mcp/blob/main/CONTRIBUTING.md) for guidelines on:
 
 * 🛠️ Setting up your development environment
 * ✨ Adding new commands

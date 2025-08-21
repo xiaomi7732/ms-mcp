@@ -1,30 +1,60 @@
 # Troubleshooting
 
-This guide helps you diagnose and resolve common issues with the Azure MCP Server. For comprehensive authentication guidance, see our [detailed Authentication guide](https://github.com/Azure/azure-mcp/blob/main/docs/Authentication.md).
+This guide helps you diagnose and resolve common issues with the Azure MCP Server. For comprehensive authentication guidance, see our [detailed Authentication guide](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md).
 
 ## Table of Contents
 
-- [Common Issues](#common-issues)
-  - [Console window is empty when running Azure MCP Server](#console-window-is-empty-when-running-azure-mcp-server)
-  - [Can I select what tools to load in the MCP server?](#can-i-select-what-tools-to-load-in-the-mcp-server)
-  - [Why does VS Code only show a subset of tools available?](#why-does-vs-code-only-show-a-subset-of-tools-available)
-  - [Bring your own language model key](#bring-your-own-language-model-key)
-- [Tool Limitations](#tool-limitations)
-  - [128-Tool Limit Issue](#128-tool-limit-issue)
-- [Authentication](#authentication)
-  - [401 Unauthorized: Local authorization is disabled](#401-unauthorized-local-authorization-is-disabled)
-  - [403 Forbidden: Authorization Failure](#403-forbidden-authorization-failure)
-  - [Primary Access Token from Wrong Issuer](#primary-access-token-from-wrong-issuer)
-  - [Network and Firewall Restrictions](#network-and-firewall-restrictions)
-  - [Enterprise Environment Scenarios](#enterprise-environment-scenarios)
-  - [AADSTS500200 error: User account is a personal Microsoft account](#aadsts500200-error-user-account-is-a-personal-microsoft-account)
-  - [Platform Package Installation Issues](#platform-package-installation-issues)
-- [Logging and Diagnostics](#logging-and-diagnostics)
-  - [Logging](#logging)
-  - [Observability with OpenTelemetry](#observability-with-opentelemetry)
-- [Development Environment](#development-environment)
-  - [Development in VS Code](#development-in-vs-code)
-  - [Locating MCP Server Binaries in VS Code](#locating-mcp-server-binaries-in-vs-code)
+- [Troubleshooting](#troubleshooting)
+  - [Table of Contents](#table-of-contents)
+  - [Common Issues](#common-issues)
+    - [Console window is empty when running Azure MCP Server](#console-window-is-empty-when-running-azure-mcp-server)
+    - [Can I select what tools to load in the MCP server?](#can-i-select-what-tools-to-load-in-the-mcp-server)
+    - [Why does VS Code only show a subset of tools available?](#why-does-vs-code-only-show-a-subset-of-tools-available)
+    - [VS Code Permission Dialog for Language Model Calls](#vs-code-permission-dialog-for-language-model-calls)
+  - [Tool Limitations](#tool-limitations)
+    - [128-Tool Limit Issue](#128-tool-limit-issue)
+      - [Problem](#problem)
+      - [Root Cause](#root-cause)
+      - [Workarounds](#workarounds)
+      - [How to Check Your Tool Count](#how-to-check-your-tool-count)
+  - [Authentication](#authentication)
+    - [401 Unauthorized: Local authorization is disabled](#401-unauthorized-local-authorization-is-disabled)
+      - [Root Cause](#root-cause-1)
+      - [Working with Resource Administrators](#working-with-resource-administrators)
+    - [403 Forbidden: Authorization Failure](#403-forbidden-authorization-failure)
+      - [Possible Causes and Resolutions](#possible-causes-and-resolutions)
+    - [Primary Access Token from Wrong Issuer](#primary-access-token-from-wrong-issuer)
+      - [Why This Happens](#why-this-happens)
+      - [Resolution](#resolution)
+    - [Network and Firewall Restrictions](#network-and-firewall-restrictions)
+      - [Common Network Issues](#common-network-issues)
+      - [Working with Network Administrators](#working-with-network-administrators)
+      - [Troubleshooting Network Connectivity](#troubleshooting-network-connectivity)
+      - [Questions to Ask Your Network Administrator](#questions-to-ask-your-network-administrator)
+    - [Enterprise Environment Scenarios](#enterprise-environment-scenarios)
+      - [Service Principal Authentication for Restricted Environments](#service-principal-authentication-for-restricted-environments)
+      - [Conditional Access Policy Compliance](#conditional-access-policy-compliance)
+      - [Resource Access in Locked-Down Environments](#resource-access-in-locked-down-environments)
+    - [AADSTS500200 error: User account is a personal Microsoft account](#aadsts500200-error-user-account-is-a-personal-microsoft-account)
+      - [Why This Happens](#why-this-happens-1)
+      - [Resolution Options](#resolution-options)
+      - [Next Steps](#next-steps)
+    - [Platform Package Installation Issues](#platform-package-installation-issues)
+      - [Error Examples:](#error-examples)
+      - [Resolution Steps:](#resolution-steps)
+      - [Common Causes of Auto-Installation Failure:](#common-causes-of-auto-installation-failure)
+      - [For Enterprise Users:](#for-enterprise-users)
+  - [Logging and Diagnostics](#logging-and-diagnostics)
+    - [Logging](#logging)
+      - [Collecting logs with dotnet-trace](#collecting-logs-with-dotnet-trace)
+      - [Collecting logs with VS Code](#collecting-logs-with-vs-code)
+      - [Collecting logs with PerfView](#collecting-logs-with-perfview)
+      - [Visualizing EventSource logs in PerfView](#visualizing-eventsource-logs-in-perfview)
+    - [Observability with OpenTelemetry](#observability-with-opentelemetry)
+  - [Development Environment](#development-environment)
+    - [Development in VS Code](#development-in-vs-code)
+      - [Bring your own language model key](#bring-your-own-language-model-key)
+    - [Locating MCP Server Binaries in VS Code](#locating-mcp-server-binaries-in-vs-code)
 
 ## Common Issues
 
@@ -96,7 +126,7 @@ This permission is required because some Azure MCP tools may need to make additi
 
 When configuring Azure MCP with 'all' toolsets, you may encounter this error:
 
-![128 tools limit error](https://github.com/Azure/azure-mcp/blob/main/docs/images/128-tools-limit-error.png)
+![128 tools limit error](https://github.com/microsoft/mcp/blob/main/docs/images/128-tools-limit-error.png)
 
 #### Root Cause
 VS Code Copilot has a 128-tool limit per request. Combining multiple comprehensive toolsets (like GitHub MCP 'all' + Azure MCP 'all') exceeds this limit. See the [VS Code discussion](https://github.com/microsoft/vscode/issues/248021) for more details.
@@ -143,7 +173,7 @@ Configure targeted MCP servers for specific needs instead of loading all tools:
 *Result: ~15-20 tools total instead of 128+*
 
 *Available Azure Services for `--namespace` flag:*
-See the complete list of [Available Azure MCP Servers](https://github.com/Azure/azure-mcp/blob/main/README.md#-available-azure-mcp-servers) in the README.
+See the complete list of [Available Azure MCP Servers](https://github.com/microsoft/mcp/blob/main/README.md#-available-azure-mcp-servers) in the README.
 
 You can start the server with multiple services by specifying after the `--namespace` flag, such as `--namespace storage --namespace keyvault`.
 
@@ -174,7 +204,7 @@ Azure MCP's dynamic proxy mode exposes one tool that routes to all Azure service
 
 ## Authentication
 
-For comprehensive authentication guidance including advanced scenarios for protected resources, firewall restrictions, and enterprise environments, see our [detailed Authentication guide](https://github.com/Azure/azure-mcp/blob/main/docs/Authentication.md).
+For comprehensive authentication guidance including advanced scenarios for protected resources, firewall restrictions, and enterprise environments, see our [detailed Authentication guide](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md).
 
 ### 401 Unauthorized: Local authorization is disabled
 
@@ -462,7 +492,7 @@ This error occurs when trying to authenticate with a personal Microsoft account 
 
 Azure MCP Server uses the Azure Identity SDK's `DefaultAzureCredential` for authentication, which requires **Microsoft Entra ID** credentials to access Azure resources. Personal Microsoft accounts use a different authentication system that isn't compatible with Azure resource access patterns.
 
-See the [Authentication guide](https://github.com/Azure/azure-mcp/blob/main/docs/Authentication.md) for detailed information about supported authentication methods.
+See the [Authentication guide](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md) for detailed information about supported authentication methods.
 
 #### Resolution Options
 
@@ -488,7 +518,7 @@ See the [Authentication guide](https://github.com/Azure/azure-mcp/blob/main/docs
 
 #### Next Steps
 1. Choose the option that best fits your scenario
-2. Complete the authentication setup as described in the [Authentication guide](https://github.com/Azure/azure-mcp/blob/main/docs/Authentication.md)
+2. Complete the authentication setup as described in the [Authentication guide](https://github.com/microsoft/mcp/blob/main/docs/Authentication.md)
 3. Verify access by running `az account show` to confirm you're authenticated with the correct account type
 
 ### Platform Package Installation Issues
@@ -618,7 +648,7 @@ docker run --rm -it -d \
 
 To export telemetry to Azure Monitor, set the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable.
 
-![image](https://github.com/Azure/azure-mcp/blob/main/docs/images/mcp-trace-aspire.png)
+![image](https://github.com/microsoft/mcp/blob/main/docs/images/mcp-trace-aspire.png)
 
 ## Development Environment
 

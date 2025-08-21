@@ -9,7 +9,7 @@
 ## Pre-merge Checklist
 
 - [ ] Required for All PRs
-    - [ ] **Read [contribution guidelines](https://github.com/Azure/azure-mcp/blob/main/CONTRIBUTING.md)**
+    - [ ] **Read [contribution guidelines](https://github.com/microsoft/mcp/blob/main/CONTRIBUTING.md)**
     - [ ] PR title clearly describes the change
     - [ ] Commit history is clean with descriptive messages ([cleanup guide](https://github.com/Azure/azure-powershell/blob/master/documentation/development-docs/cleaning-up-commits.md))
     - [ ] Added comprehensive tests for new/modified functionality
@@ -20,7 +20,7 @@
     - [ ] Updated `README.md` documentation
     - [ ] Updated command list in `/docs/azmcp-commands.md`
     - [ ] Updated test prompts in `/docs/e2eTestPrompts.md`
-    - [ ] For new or modified tool descriptions, ran [`ToolDescriptionEvaluator`](https://github.com/Azure/azure-mcp/blob/main/eng/tools/ToolDescriptionEvaluator/Quickstart.md) and obtained a score of `0.4` or more and a top 3 ranking for all related test prompts
+    - [ ] For new or modified tool descriptions, ran [`ToolDescriptionEvaluator`](https://github.com/microsoft/mcp/blob/main/eng/tools/ToolDescriptionEvaluator/Quickstart.md) and obtained a score of `0.4` or more and a top 3 ranking for all related test prompts
 - [ ] 👉 For Community (non-Azure team member) PRs:
     - [ ] **Security review**: Reviewed code for security vulnerabilities, malicious code, or suspicious activities before running tests (`crypto mining, spam, data exfiltration, etc.`)
     - [ ] **Manual tests run**: added comment `/azp run azure - mcp` to run *Live Test Pipeline*
