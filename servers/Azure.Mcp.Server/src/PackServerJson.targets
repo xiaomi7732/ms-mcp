@@ -2,7 +2,7 @@
   <!--
   This targets file introduces a new target that runs during dotnet pack.
 
-  It reads a template .mcp/server.json file and fills in the placeholders. The resulting file is included in the output .NET tool package (a .nupkg file,NuGet package).
+  It reads a template .mcp/server.json file and fills in the placeholders. The resulting file is included in the output .NET tool package (a .nupkg file, NuGet package).
 
   The schema of the .mcp/server.json file is owned by the MCP Registry project:
   https://github.com/modelcontextprotocol/registry/blob/main/docs/server-json/README.md
