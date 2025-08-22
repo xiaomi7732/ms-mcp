@@ -42,11 +42,9 @@
     <IlcOptimizationPreference>Size</IlcOptimizationPreference>
     <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
   </PropertyGroup>
-  <!-- Windows AOT native build security flags to enable 'Control Flow Guard' (CFG) and 'DYNAMICBASE' -->
+  <!-- Windows AOT native build security flags to enable 'Control Flow Guard' (CFG) -->
   <PropertyGroup Condition="'$(BuildNative)' == 'true' and $(RuntimeIdentifier.StartsWith('win'))">
     <ControlFlowGuard>Guard</ControlFlowGuard>
-    <EnableCOMDATFolding>false</EnableCOMDATFolding>
-    <OptimizeReferences>false</OptimizeReferences>
   </PropertyGroup>
   <!-- Debug configuration -->
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
