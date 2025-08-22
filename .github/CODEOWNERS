@@ -21,9 +21,9 @@
 ##################
 # Eng Sys
 ##################
-/eng/                                  @microsoft/azure-mcp @Azure/azure-sdk-eng
-/.github/                              @microsoft/azure-mcp @Azure/azure-sdk-eng
-/.config/                              @microsoft/azure-mcp @Azure/azure-sdk-eng
+/eng/                                  @microsoft/azure-mcp @microsoft/azure-sdk-eng
+/.github/                              @microsoft/azure-mcp @microsoft/azure-sdk-eng
+/.config/                              @microsoft/azure-mcp @microsoft/azure-sdk-eng
 
 ##################
 # Services
