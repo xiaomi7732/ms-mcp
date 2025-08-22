@@ -17,7 +17,7 @@
 ## Pull Request Guidelines
 
 - Ensure all tests pass
-- Follow the [contribution guidelines](https://github.com/Azure/azure-mcp/blob/main/CONTRIBUTING.md)
+- Follow the [contribution guidelines](https://github.com/microsoft/mcp/blob/main/CONTRIBUTING.md)
 - Include appropriate documentation
 - Include tests that cover your changes
 - Update CHANGELOG.md with your changes

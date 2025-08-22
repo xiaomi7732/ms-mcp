@@ -1,7 +1,7 @@
 # Contributing to Azure MCP
 
 There are many ways to contribute to the Azure MCP project: reporting bugs, submitting pull requests, and creating suggestions.
-After cloning and building the repo, check out the [GitHub project](https://github.com/orgs/Azure/projects/812/views/13) and [issues list](https://github.com/Azure/azure-mcp/issues). Issues labeled [help wanted](https://github.com/Azure/azure-mcp/labels/help%20wanted) are good issues to submit a PR for. Issues labeled [good first issue](https://github.com/Azure/azure-mcp/labels/good%20first%20issue) are great candidates to pick up if you are in the code for the first time.
+After cloning and building the repo, check out the [GitHub project](https://github.com/orgs/Azure/projects/812/views/13) and [issues list](https://github.com/microsoft/mcp/issues). Issues labeled [help wanted](https://github.com/microsoft/mcp/labels/help%20wanted) are good issues to submit a PR for. Issues labeled [good first issue](https://github.com/microsoft/mcp/labels/good%20first%20issue) are great candidates to pick up if you are in the code for the first time.
 
 >[!IMPORTANT]
 If you are contributing significant changes, or if the issue is already assigned to a specific milestone, please discuss with the assignee of the issue first before starting to work on the issue.
@@ -104,14 +104,14 @@ The project is organized as follows:
 ### Adding a New Command
 
 > **⚠️ Important: Submit One Tool Per Pull Request**
-> 
+>
 > We strongly recommend submitting **one tool per pull request** to streamline the review process and provide better onboarding experience. This approach results in:
-> 
+>
 > - **Faster reviews**: Single tools are easier and quicker to review
-> - **Better feedback**: More focused discussions on individual tool implementation  
+> - **Better feedback**: More focused discussions on individual tool implementation
 > - **Easier iteration**: Smaller changes mean faster iteration cycles
 > - **Incremental progress**: Get your first tool merged to establish baseline, then build upon it
-> 
+>
 > If you're planning to contribute multiple tools, please:
 > 1. Submit your most important or representative tool as your first PR to establish the code patterns.
 > 2. Use that baseline to inform your subsequent tool PRs.
@@ -130,21 +130,21 @@ The project is organized as follows:
    "create [namespace] [resource] [operation] command using #new-command.md as a reference"
    ```
 
-4. **Follow implementation guidelines** in [docs/new-command.md](https://github.com/Azure/azure-mcp/blob/main/docs/new-command.md)
+4. **Follow implementation guidelines** in [docs/new-command.md](https://github.com/microsoft/mcp/blob/main/docs/new-command.md)
 
 5. **Update documentation**:
-   - Add the new command to [/docs/azmcp-commands.md](https://github.com/Azure/azure-mcp/blob/main/docs/azmcp-commands.md)
-   - Add test prompts for the new command in [/docs/e2eTestPrompts.md](https://github.com/Azure/azure-mcp/blob/main/docs/e2eTestPrompts.md)
-   - Update [README.md](https://github.com/Azure/azure-mcp/blob/main/README.md) to mention the new command
+   - Add the new command to [/docs/azmcp-commands.md](https://github.com/microsoft/mcp/blob/main/docs/azmcp-commands.md)
+   - Add test prompts for the new command in [/docs/e2eTestPrompts.md](https://github.com/microsoft/mcp/blob/main/docs/e2eTestPrompts.md)
+   - Update [README.md](https://github.com/microsoft/mcp/blob/main/README.md) to mention the new command
 
-6. **Add CODEOWNERS entry** in [CODEOWNERS](https://github.com/Azure/azure-mcp/blob/main/.github/CODEOWNERS) [(example)](https://github.com/Azure/azure-mcp/commit/08f73efe826d5d47c0f93be5ed9e614740e82091)
+6. **Add CODEOWNERS entry** in [CODEOWNERS](https://github.com/microsoft/mcp/blob/main/.github/CODEOWNERS) [(example)](https://github.com/microsoft/mcp/commit/08f73efe826d5d47c0f93be5ed9e614740e82091)
 
 7. **Create Pull Request**:
    - Reference the issue you created
    - Include tests in the `/tests` folder
    - Ensure all tests pass
    - Follow code style requirements
-   - Run [`ToolDescriptionEvaluator`](https://github.com/Azure/azure-mcp/blob/main/eng/tools/ToolDescriptionEvaluator/Quickstart.md) for the new tool description and obtain a score of `0.4` or more and a top 3 ranking for all related test prompts
+   - Run [`ToolDescriptionEvaluator`](https://github.com/microsoft/mcp/blob/main/eng/tools/ToolDescriptionEvaluator/Quickstart.md) for the new tool description and obtain a score of `0.4` or more and a top 3 ranking for all related test prompts
 
 ## Testing
 
@@ -396,8 +396,8 @@ This section assumes that the necessary Azure resources for live tests are alrea
 To debug the Azure MCP Server (`azmcp`) when running live tests in VS Code:
 
 1. Build the package with debug symbols: `./eng/scripts/Build-Local.ps1 -DebugBuild`
-2. Set a breakpoint in a command file (e.g., [`KeyValueListCommand.ExecuteAsync`](https://github.com/Azure/azure-mcp/blob/4ed650a0507921273acc7b382a79049809ef39c1/src/Commands/AppConfig/KeyValue/KeyValueListCommand.cs#L48))
-3. In VS Code, navigate to a test method (e.g., [`AppConfigCommandTests::Should_list_appconfig_kvs()`](https://github.com/Azure/azure-mcp/blob/4ed650a0507921273acc7b382a79049809ef39c1/tests/Client/AppConfigCommandTests.cs#L56)), add a breakpoint to `CallToolAsync` call in the test method, then right-click and select **Debug Test**
+2. Set a breakpoint in a command file (e.g., [`KeyValueListCommand.ExecuteAsync`](https://github.com/microsoft/mcp/blob/4ed650a0507921273acc7b382a79049809ef39c1/src/Commands/AppConfig/KeyValue/KeyValueListCommand.cs#L48))
+3. In VS Code, navigate to a test method (e.g., [`AppConfigCommandTests::Should_list_appconfig_kvs()`](https://github.com/microsoft/mcp/blob/4ed650a0507921273acc7b382a79049809ef39c1/tests/Client/AppConfigCommandTests.cs#L56)), add a breakpoint to `CallToolAsync` call in the test method, then right-click and select **Debug Test**
 4. Find the `azmcp` process ID:
 
     ```shell
@@ -590,18 +590,18 @@ Instructions for consuming the package from the dev feed can be found in the "Ex
 
 ## Support and Community
 
-Please see our [support](https://github.com/Azure/azure-mcp/blob/main/SUPPORT.md) statement.
+Please see our [support](https://github.com/microsoft/mcp/blob/main/SUPPORT.md) statement.
 
 ### Questions and Support
 
 We're building this in the open.  Your feedback is much appreciated, and will help us shape the future of the Azure MCP server.
 
-👉 [Open an issue in the public repository](https://github.com/Azure/azure-mcp/issues/new/choose).
+👉 [Open an issue in the public repository](https://github.com/microsoft/mcp/issues/new/choose).
 
 ### Additional Resources
 
-- [Azure MCP Documentation](https://github.com/Azure/azure-mcp/blob/main/README.md)
-- [Command Implementation Guide](https://github.com/Azure/azure-mcp/blob/main/docs/new-command.md)
+- [Azure MCP Documentation](https://github.com/microsoft/mcp/blob/main/README.md)
+- [Command Implementation Guide](https://github.com/microsoft/mcp/blob/main/docs/new-command.md)
 - [VS Code Insiders Download](https://code.visualstudio.com/insiders/)
 - [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
 
@@ -611,4 +611,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 
 ### License
 
-By contributing, you agree that your contributions will be licensed under the project's [license](https://github.com/Azure/azure-mcp/blob/main/LICENSE).
+By contributing, you agree that your contributions will be licensed under the project's [license](https://github.com/microsoft/mcp/blob/main/LICENSE).
