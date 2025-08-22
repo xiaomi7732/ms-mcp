@@ -223,7 +223,7 @@ public class CosmosService(ISubscriptionService subscriptionService, ITenantServ
         }
         catch (Exception ex)
         {
-            throw new Exception($"Error listing databases: {ex.Message}", ex);
+            throw new Exception($"Error listing databases in the account '{accountName}': {ex.Message}", ex);
         }
 
         await _cacheService.SetAsync(CacheGroup, cacheKey, databases, s_cacheDurationResources);
@@ -278,7 +278,7 @@ public class CosmosService(ISubscriptionService subscriptionService, ITenantServ
         }
         catch (Exception ex)
         {
-            throw new Exception($"Error listing containers: {ex.Message}", ex);
+            throw new Exception($"Error listing containers in database '{databaseName}' of account '{accountName}': {ex.Message}", ex);
         }
 
         await _cacheService.SetAsync(CacheGroup, cacheKey, containers, s_cacheDurationResources);
