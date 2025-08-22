@@ -2,10 +2,10 @@
 #Requires -Version 7
 [CmdletBinding(DefaultParameterSetName='default')]
 param(
+    [Parameter(Mandatory=$true)]
+    [string] $ServerName,
     [Parameter(Mandatory=$true, ParameterSetName='Release')]
     [string] $Version,
-    [Parameter(Mandatory=$true, ParameterSetName='Release')]
-    [string] $ServerName,
     [Parameter(Mandatory=$true, ParameterSetName='Release')]
     [string] $ReleaseDate,
     [Parameter(ParameterSetName='Release')]
