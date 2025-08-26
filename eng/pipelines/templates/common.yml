@@ -110,12 +110,10 @@ extends:
           parameters:
             ServerName: ${{ parameters.ServerName }}
 
-        - ${{ each vsixtarget in parameters.VsixTargets }}:
-          - template: /eng/pipelines/templates/jobs/sign-and-pack-vsix.yml
-            parameters:
-              DependsOn: SignAndPack
-              VsixTarget: ${{ vsixtarget }}
-              ServerName: ${{ parameters.ServerName }}
+        - template: /eng/pipelines/templates/jobs/sign-and-pack-vsix.yml
+          parameters:
+            DependsOn: SignAndPack
+            ServerName: ${{ parameters.ServerName }}
 
         - job: Verify_Signing
           displayName: "Verify Signing"

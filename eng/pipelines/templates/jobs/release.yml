@@ -102,7 +102,7 @@ jobs:
       isProduction: true
       inputs:
       - input: pipelineArtifact
-        artifactName: vsix_package_${{ VsixTarget }}_signed
+        artifactName: vsix_packages_signed
         targetPath: $(Pipeline.Workspace)/drop
     environment: package-publish
     pool:
@@ -119,7 +119,7 @@ jobs:
               azureSubscription: azure-sdk-vsmarketplace
               scriptType: pscore
               scriptLocation: inlineScript
-              workingDirectory: $(Pipeline.Workspace)/drop
+              workingDirectory: $(Pipeline.Workspace)/drop/${{ parameters.ServerName }}/${{ VsixTarget }}
               inlineScript: |
                 Write-Host "Publishing VSIX for ${{ VsixTarget }}"
                 $baseName = Get-ChildItem *.vsix | Select-Object -First 1 | ForEach-Object { $_.BaseName }
