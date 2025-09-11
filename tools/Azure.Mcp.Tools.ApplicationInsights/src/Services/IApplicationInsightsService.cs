@@ -3,7 +3,6 @@
 
 using System.Text.Json.Nodes;
 using Azure.Mcp.Core.Options;
-using Azure.Mcp.Tools.ApplicationInsights.Models;
 
 namespace Azure.Mcp.Tools.ApplicationInsights.Services;
 

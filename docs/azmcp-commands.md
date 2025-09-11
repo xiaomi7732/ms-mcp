@@ -223,24 +223,12 @@ azmcp applens resource diagnose --subscription <subscription> \
 #### Code Optimization Recommendations
 
 ```bash
-# List code optimization (profiler) recommendations across all Application Insights components in a subscription
+# List code optimization recommendations across all Application Insights components in a subscription
 azmcp applicationinsights recommendation list --subscription <subscription>
 
 # Scope to a specific resource group
 azmcp applicationinsights recommendation list --subscription <subscription> \
                                               --resource-group <resource-group>
-
-# Provide an explicit tenant or adjust retry policy (optional)
-azmcp applicationinsights recommendation list --subscription <subscription> \
-                                              --resource-group <resource-group> \
-                                              --tenant <tenant> \
-                                              --retry-max-retries 5 \
-                                              --retry-delay 2
-
-# Example using environment variable for subscription id
-AZURE_SUBSCRIPTION_ID=<subscription> \
-azmcp applicationinsights recommendation list
-
 ```
 
 ### Azure Container Registry (ACR) Operations

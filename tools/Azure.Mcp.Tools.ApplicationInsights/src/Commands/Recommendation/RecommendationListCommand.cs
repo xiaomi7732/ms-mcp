@@ -1,17 +1,16 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+using System.CommandLine;
+using System.Text.Json.Nodes;
 using Azure.Mcp.Core.Commands;
 using Azure.Mcp.Core.Commands.Subscription;
-using Azure.Mcp.Core.Services.Telemetry;
-using Azure.Mcp.Tools.ApplicationInsights.Models;
+using Azure.Mcp.Core.Extensions;
+using Azure.Mcp.Core.Models.Command;
+using Azure.Mcp.Core.Models.Option;
 using Azure.Mcp.Tools.ApplicationInsights.Options;
 using Azure.Mcp.Tools.ApplicationInsights.Services;
 using Microsoft.Extensions.Logging;
-using System.CommandLine;
-using System.CommandLine.Parsing;
-using Azure.Mcp.Core.Models.Command;
-using System.Text.Json.Nodes;
 
 namespace Azure.Mcp.Tools.ApplicationInsights.Commands.Recommendation;
 
@@ -30,24 +29,32 @@ public sealed class RecommendationListCommand(ILogger<RecommendationListCommand>
 
     public override string Title => CommandTitle;
 
-    public override ToolMetadata Metadata => new() { Destructive = false, ReadOnly = true };
+    public override ToolMetadata Metadata => new() { Destructive = false, Idempotent = true, LocalRequired = false, OpenWorld = false, Secret = false, ReadOnly = true };
 
     protected override void RegisterOptions(Command command)
     {
         base.RegisterOptions(command);
-        UseResourceGroup();
+        // New explicit option registration pattern: add resource group as optional per-command
+        command.Options.Add(OptionDefinitions.Common.ResourceGroup.AsOptional());
+    }
+
+    protected override RecommendationListOptions BindOptions(ParseResult parseResult)
+    {
+        var options = base.BindOptions(parseResult);
+        options.ResourceGroup ??= parseResult.GetValueOrDefault<string>(OptionDefinitions.Common.ResourceGroup.Name);
+        return options;
     }
 
     public override async Task<CommandResponse> ExecuteAsync(CommandContext context, ParseResult parseResult)
     {
+        if (!Validate(parseResult.CommandResult, context.Response).IsValid)
+        {
+            return context.Response;
+        }
+
         var options = BindOptions(parseResult);
         try
         {
-            if (!Validate(parseResult.CommandResult, context.Response).IsValid)
-            {
-                return context.Response;
-            }
-
             var service = context.GetService<IApplicationInsightsService>();
             var insights = await service.GetProfilerInsightsAsync(
                 options.Subscription!,

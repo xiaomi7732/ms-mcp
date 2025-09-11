@@ -18,36 +18,30 @@ using Microsoft.Extensions.Logging;
 
 namespace Azure.Mcp.Tools.ApplicationInsights.Services;
 
-
-
 /// <summary>
 /// A simple client to call Profiler dataplane. This is not a full fledged client.
 /// Expect to be replaced by Azure SDK in future.
 /// </summary>
-public class ProfilerDataService : BaseAzureService, IProfilerDataService
+public class ProfilerDataService(
+    IHttpClientService httpClientService,
+    ILogger<ProfilerDataService> logger,
+    ITenantService? tenantService = null, ILoggerFactory? loggerFactory = null)
+    : BaseAzureService(tenantService, loggerFactory), IProfilerDataService
 {
-
     private const string Endpoint = "https://dataplane.diagnosticservices.azure.com/";
     private const string DefaultScope = "api://dataplane.diagnosticservices.azure.com/.default";
 
-    private readonly HttpClient _httpClient;
+    private readonly HttpClient _httpClient = httpClientService.CreateClient(new Uri(Endpoint));
 
-    private readonly ILogger _logger;
-
-    public ProfilerDataService(
-        IHttpClientService httpClientService,
-        ILogger<ProfilerDataService> logger,
-        ITenantService? tenantService = null, ILoggerFactory? loggerFactory = null) : base(tenantService, loggerFactory)
-    {
-        _httpClient = httpClientService.CreateClient(new Uri(Endpoint));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
+    private readonly ILogger _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
     public async Task<IEnumerable<JsonNode>> GetInsightsAsync(IEnumerable<ResourceIdentifier> resourceIds, DateTime? startDateTimeUtc = null, DateTime? endDateTimeUtc = null, CancellationToken cancellationToken = default)
     {
-        if (resourceIds is null || !resourceIds.Any())
+        ArgumentNullException.ThrowIfNull(resourceIds);
+
+        if (!resourceIds.Any())
         {
-            throw new ArgumentNullException(nameof(resourceIds));
+            throw new ArgumentException($"'{nameof(resourceIds)}' cannot be empty.", nameof(resourceIds));
         }
 
         List<Guid> appIds = [];
@@ -65,10 +59,7 @@ public class ProfilerDataService : BaseAzureService, IProfilerDataService
         DateTime? endDateTimeUtc = null,
         CancellationToken cancellationToken = default)
     {
-        if (appIds is null)
-        {
-            throw new ArgumentNullException(nameof(appIds));
-        }
+        ArgumentNullException.ThrowIfNull(appIds);
 
         if (!appIds.Any())
         {
