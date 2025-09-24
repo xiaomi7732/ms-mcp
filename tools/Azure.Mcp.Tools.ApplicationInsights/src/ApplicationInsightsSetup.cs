@@ -5,6 +5,7 @@ using Azure.Mcp.Core.Areas;
 using Azure.Mcp.Core.Commands;
 using Azure.Mcp.Core.Extensions;
 using Azure.Mcp.Tools.ApplicationInsights.Commands.Recommendation;
+using Azure.Mcp.Tools.ApplicationInsights.Commands.AppTrace;
 using Azure.Mcp.Tools.ApplicationInsights.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -27,6 +28,7 @@ public class ApplicationInsightsSetup : IAreaSetup
         services.AddSingleton<IApplicationInsightsService, ApplicationInsightsService>();
 
         services.AddSingleton<RecommendationListCommand>();
+        services.AddSingleton<AppTraceListCommand>();
     }
 
     public CommandGroup RegisterCommands(IServiceProvider serviceProvider)
@@ -36,8 +38,14 @@ public class ApplicationInsightsSetup : IAreaSetup
         var recommendation = new CommandGroup("recommendation", "Application Insights recommendation operations - list recommendation targets (components).");
         group.AddSubGroup(recommendation);
 
+        var appTrace = new CommandGroup("apptrace", "Application Insights trace operations - list trace metadata for components.");
+        group.AddSubGroup(appTrace);
+
         var recommendationList = serviceProvider.GetRequiredService<RecommendationListCommand>();
         recommendation.AddCommand(recommendationList.Name, recommendationList);
+
+        var appTraceList = serviceProvider.GetRequiredService<AppTraceListCommand>();
+        appTrace.AddCommand(appTraceList.Name, appTraceList);
 
         return group;
     }
